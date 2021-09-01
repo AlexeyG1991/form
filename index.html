@@ -40,7 +40,7 @@
                     </div>
                     <div>
                         <p>Підтвердження електронної пошти <span>*</span></p>
-                        <input placeholder="Введіть адресу" tabindex="5" name="userphone" type="text">
+                        <input placeholder="Введіть адресу" tabindex="5" name="#" type="text">
                     </div>
                     <h2>Адреса</h2>
                     <p>Область <span>*</span></p>
@@ -52,7 +52,7 @@
                     </select>
                     <div>
                         <p>Місто/населений пункт <span>*</span></p>
-                        <input placeholder="Введіть назву" tabindex="5" name="userphone" type="text">
+                        <input placeholder="Введіть назву" tabindex="5" name="#" type="text">
                     </div>
                     <p>Адреса відділення Нової пошти <span>*</span></p>
                     <p class="text-info">(на яке робимо відправку подарункового сертифікату)</p>
@@ -71,7 +71,8 @@
                         <option value="4">3</option>
                     </select>
                     <h2>Конфіденційність</h2>
-                    <p>Я повністю приймаю повідомлення про порядок поводження з особистою інформацією, а також всі умови
+                    <p class="p-radio">Я повністю приймаю повідомлення про порядок поводження з особистою інформацією, а
+                        також всі умови
                         та строки ТОВ "Вірлпул Україна". Для того, щоб ознайомитись з повідомленням про порядок
                         поводження з особистою інформацією натисніть <a href="#">тут</a></p>
                     <div class="form-row">
@@ -86,7 +87,8 @@
                         </div>
                         </label>
                     </div>
-                    <p>Повідомлення про відправлення інформації про рекламні кампанії та спеціальні акції</p>
+                    <p class="p-radio">Повідомлення про відправлення інформації про рекламні кампанії та спеціальні
+                        акції</p>
                     <div class="form-row">
                         <p>Я згоден(на) <span>*</span></p>
                         <div class="form_radio">
@@ -122,11 +124,18 @@
                     </select>
                     <div>
                         <p>Код 12nc (комерційний код) *</p>
-                        <input class="input-gray" placeholder="" tabindex="14" name="userphone" type="text">
+                        <input class="input-gray" placeholder="" tabindex="14" name="#" type="text">
                     </div>
                     <div>
                         <p>Серійний номер <span>*</span></p>
-                        <input class="input-info" placeholder="" tabindex="15" name="userphone" type="text">
+                        <div class="input-info">
+                            <input placeholder="" tabindex="15" name="#" type="text">
+                            <span class="span-hover">i</span>
+                            <span class="input-info_text">Серійний номер є унікальним
+                                ідентифікатором вашого
+                                пристрою
+                                (наприклад. 379633322115)</span>
+                        </div>
                     </div>
                     <p>Дата придбання <span>*</span></p>
                     <div class="select-data">
@@ -162,12 +171,14 @@
                     </select>
                     <div>
                         <p>Поле для завантаження фото <span>*</span></p>
-                        <input placeholder="Завантажити фото" tabindex="21" type="file">
-                        <button class="button-send" tabindex="22" type="submit">Завантажити</button>
+                        <div class="input-photo">
+                            <input tabindex="21" type="file">
+                            <button class="button-send" tabindex="22" type="submit">Завантажити</button>
+                        </div>
                     </div>
                     <p>На зображенні чеку має бути чітко видно дату купівлі, назву та адресу магазину, назву та модель
                         виробу, ціну придбання.</p>
-                    <p>Обов'язкові поля <span>*</span></p>
+                    <p class="p-last">Обов'язкові поля <span>*</span></p>
                     <div>
                         <button class="button-send" tabindex="23" type="submit">Завантажити</button>
                     </div>

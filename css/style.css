@@ -94,7 +94,7 @@ h1, h2, h3, h4, h5, h6 {
 .section-register_form {
     display: flex;
     justify-content: space-between;
-    padding: 0px 30px;
+    padding: 0px 30px 250px;
     box-shadow: 0 0 5px 1px rgba(221, 221, 221, 1);
 }
 .section-register_form-info {
@@ -109,7 +109,6 @@ form p {
     margin-bottom: 15px;
     font-size: 18px;
     max-width: 80%;
-    /* font-weight: 400; */
 }
 form p a {
     text-decoration: underline;
@@ -136,26 +135,54 @@ input {
 }
 .input-info {
     position: relative;
+    /* z-index: 0; */
+    width: 80%;
 }
-.input-info::after {
+.input-info input{
+    position: relative;
+    width: 100%;
+}
+.input-info .span-hover {
     position: absolute;
-    content: "i";
-    right: -30px;
-    /* top: 0; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 7px;
+    right: 10px;
     width: 20px;
     height: 20px;
     background-color: #fff;
-    font-size: 14px;
+    font-size: 16px;
     border: 1px solid #edb112;
     color: #edb112;
     border-radius: 50%;
     z-index: 5;
     cursor: pointer;
+    transition: all 0.3s ease 0s;
 }
+.input-info_text {
+    position: absolute;
+    padding: 9px;
+    top: 0px;
+    right: 5px;
+    background-color: #edb112;
+    color: #353535;
+    margin-right: -135%;
+    opacity: 0;
+    transition: all 0.3s ease 0s;
+}
+.span-hover:hover {
+    background-color: #edb112;
+    color: #fff;
+}
+.span-hover:hover+.input-info_text {
+    opacity: 1;
+}
+
 
 /* ---------------- */
 .form_radio {
-	/* margin-bottom: 10px; */
+    margin: 0 10px;
 }
 .form_radio input[type=radio] {
 	display: none;
@@ -164,7 +191,7 @@ input {
 	display: inline-block;
 	cursor: pointer;
 	position: relative;
-	padding-left: 25px;
+	padding-left: 35px;
 	margin-right: 0;
 	line-height: 18px;
 	user-select: none;
@@ -177,30 +204,36 @@ input {
 	position: absolute;
 	left: 0;
 	bottom: 1px;
-	/* background: url(/img/radio-1.png) 0 0 no-repeat; */
     border: 1px solid #cbcac9;
 }
- 
 /* Checked */
 .form_radio input[type=radio]:checked + label:before {
-	background-color: #000;
+    content: "X";
+    color: #edb112;
+    border: 1px solid #edb112;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
- 
 /* Hover */
 .form_radio label:hover:before {
     border: 1px solid #edb112;
 }
- 
-/* Disabled */
-.form_radio input[type=radio]:disabled + label:before {
-	filter: grayscale(100%);
-}
 
+.p-radio {
+    margin-bottom: 30px;
+}
 .form-row {
+    margin-bottom: 30px;
     display: flex;
 }
+.form-row p {
+    margin-right: 30px;
+}
 .section-register_form-img {
+    align-self: flex-end;
     padding-right: 30px;
+    margin-bottom: 29%;
     flex: 40%;
 }
 
@@ -289,7 +322,31 @@ input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s eas
     width: 80%;
 }
 .select-data .select {
-    flex: 1 1;
+    flex: 3;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.select-data .select:first-child {
+    flex: 1;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.select-data .select:last-child {
+    flex: 1;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.select-data .select .new-select {
+    width: 100%;
+}
+.select-data .select .new-select__list {
+    width: 100%;
+}
+.input-photo {
+    display: flex;
+}
+.p-last {
+    margin: 40px 0 70px;
 }
 .button-send {
     color: #353535;
