@@ -76,10 +76,101 @@
                         поводження з особистою інформацією натисніть <a href="#">тут</a></p>
                     <div class="form-row">
                         <p>Я згоден(на) <span>*</span></p>
-                        <input tabindex="9" checked type="radio" name="gender" value="male">Так
-                        <input tabindex="9" type="radio" name="gender" value="female">Ні
+                        <div class="form_radio">
+                            <input id="radio-1" type="radio" name="radio" value="1">
+                            <label for="radio-1">Так</label>
+                        </div>
+                        <div class="form_radio">
+                            <input id="radio-2" type="radio" name="radio" value="2">
+                            <label for="radio-2">Ні</label>
+                        </div>
+                        </label>
+                    </div>
+                    <p>Повідомлення про відправлення інформації про рекламні кампанії та спеціальні акції</p>
+                    <div class="form-row">
+                        <p>Я згоден(на) <span>*</span></p>
+                        <div class="form_radio">
+                            <input id="radio-3" type="radio" name="rad" value="3">
+                            <label for="radio-3">Так</label>
+                        </div>
+                        <div class="form_radio">
+                            <input id="radio-4" type="radio" name="rad" value="4">
+                            <label for="radio-4">Ні</label>
+                        </div>
                     </div>
                     <h2>Інформація про прилад</h2>
+                    <p>Прилад <span>*</span></p>
+                    <select tabindex="11" name="#" class="select" id="#">
+                        <option value="1" disabled>Назва приладу</option>
+                        <option value="2">1</option>
+                        <option value="3">2</option>
+                        <option value="4">3</option>
+                    </select>
+                    <p>Бренд <span>*</span></p>
+                    <select tabindex="12" name="#" class="select" id="#">
+                        <option value="1" disabled>Оберіть варіанти</option>
+                        <option value="2">1</option>
+                        <option value="3">2</option>
+                        <option value="4">3</option>
+                    </select>
+                    <p>Назва моделі <span>*</span></p>
+                    <select tabindex="13" name="#" class="select" id="#">
+                        <option value="1" disabled>Оберіть варіанти</option>
+                        <option value="2">1</option>
+                        <option value="3">2</option>
+                        <option value="4">3</option>
+                    </select>
+                    <div>
+                        <p>Код 12nc (комерційний код) *</p>
+                        <input class="input-gray" placeholder="" tabindex="14" name="userphone" type="text">
+                    </div>
+                    <div>
+                        <p>Серійний номер <span>*</span></p>
+                        <input class="input-info" placeholder="" tabindex="15" name="userphone" type="text">
+                    </div>
+                    <p>Дата придбання <span>*</span></p>
+                    <div class="select-data">
+                        <select tabindex="16" name="#" class="select" id="#">
+                            <option value="1" disabled>День</option>
+                            <option value="2">1</option>
+                            <option value="3">2</option>
+                            <option value="4">3</option>
+                        </select>
+                        <select tabindex="17" name="#" class="select" id="#">
+                            <option value="1" disabled>Місяць</option>
+                            <option value="2">1</option>
+                            <option value="3">2</option>
+                            <option value="4">3</option>
+                        </select>
+                        <select tabindex="18" name="#" class="select" id="#">
+                            <option value="1" disabled>Рік</option>
+                            <option value="2">1</option>
+                            <option value="3">2</option>
+                            <option value="4">3</option>
+                        </select>
+                    </div>
+                    <div>
+                        <p>Номер фіксального чеку <span>*</span></p>
+                        <input placeholder="" tabindex="19" name="userphone" type="text">
+                    </div>
+                    <p>Назва магазину <span>*</span></p>
+                    <select tabindex="20" name="#" class="select" id="#">
+                        <option value="1" disabled>Оберіть варіанти</option>
+                        <option value="2">1</option>
+                        <option value="3">2</option>
+                        <option value="4">3</option>
+                    </select>
+                    <div>
+                        <p>Поле для завантаження фото <span>*</span></p>
+                        <input placeholder="Завантажити фото" tabindex="21" type="file">
+                        <button class="button-send" tabindex="22" type="submit">Завантажити</button>
+                    </div>
+                    <p>На зображенні чеку має бути чітко видно дату купівлі, назву та адресу магазину, назву та модель
+                        виробу, ціну придбання.</p>
+                    <p>Обов'язкові поля <span>*</span></p>
+                    <div>
+                        <button class="button-send" tabindex="23" type="submit">Завантажити</button>
+                    </div>
                 </form>
                 <div class="section-register_form-img">
                     <img src="img/form-img.png" alt="img">
