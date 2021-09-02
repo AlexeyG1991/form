@@ -26,9 +26,6 @@ html, body {
     scroll-behavior: smooth;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-input, button, textarea {
-    font-family: inherit;
-}
 button {
     cursor: pointer;
 }
@@ -49,8 +46,18 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: inherit;
 }
 
+
+@font-face {
+    font-family: Myriad-pro;
+    src: url(../fonts/MYRIADPRO-REGULAR.ttf);
+}
+.danger,
+.danger ~ .new-select {
+	border-color: red;
+}
 .wrapper-form {
     overflow: hidden;
+    font-family: Myriad-pro;
 }
 ._container-max {
     max-width: 1400px;
@@ -118,8 +125,11 @@ form p a {
 form p a:hover {
     color: #edb112;
 }
+form p span {
+    color: #edb112;
+}
 .text-info {
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom: 15px;
     margin-top: -15px;
 }
@@ -136,7 +146,6 @@ input {
 }
 .input-info {
     position: relative;
-    /* z-index: 0; */
     width: 80%;
 }
 .input-info input{
@@ -148,7 +157,7 @@ input {
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 7px;
+    top: 6px;
     right: 10px;
     width: 20px;
     height: 20px;
@@ -166,16 +175,17 @@ input {
     padding: 9px;
     top: 0px;
     right: 5px;
+    font-size: 16px;
     background-color: #edb112;
     color: #353535;
-    margin-right: -137%;
+    margin-right: -128%;
     opacity: 0;
     transition: all 0.3s ease 0s;
 }
 .input-info_text::before {
     content: ''; 
     position: absolute;
-    left: -15px; top: 13px;
+    left: -15px; top: 12px;
     border: 5px solid transparent;
     border-right: 10px solid #edb112;
 }
@@ -270,14 +280,14 @@ input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s eas
 .new-select {
     position: relative;
     width: 80%;
-    color: #ccc;
+    color: #cbcac9;
     padding: 0 10px;
     background-color: #fff;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 14px;
-    height: 30px;
+    font-size: 16px;
+    height: 31px;
     cursor: pointer;
     border: 1px solid #edb112;
     border-radius: 3px;
@@ -291,7 +301,7 @@ input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s eas
     left: 0;
     background-color: #fff;
     border-top: 0;
-    font-size: 14px;
+    font-size: 16px;
     padding: 10px 0 5px;
     border: 1px solid #edb112;
     border-radius: 3px;
@@ -309,7 +319,7 @@ input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s eas
     margin: 10px 15px;
     height: 1px;
     overflow: hidden;
-    color: #ccc;
+    color: #353535;
 }
 .new-select__item:hover span {
     color: #edb112;
@@ -380,13 +390,17 @@ input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s eas
     justify-content: center;
     background-color: #edb112;
     border-radius: 3px;
-    padding: 0px 20px 5px;
+    padding: 5px 20px;
     font-size: 20px;
     margin-bottom: 25px;
     margin-left: -3px;
+    transition: all 0.3s ease 0s;
+}
+.button-send:hover {
+    background-color: #e2a600;
 }
 .button-send_big {
-    padding: 10px 25px 15px;
+    padding: 10px 25px;
 }
 .hide {
     position: absolute;
@@ -397,7 +411,17 @@ input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s eas
     height: 1px;
 }
 
+@media (max-width: 1315px) {
+    .input-info_text {
+        margin-right: -318px;
+        max-width: 300px;
+    }
+}
+
 @media (max-width: 768px) {
+    form h2 {
+        margin: 35px 0;
+    }
     .section-register_form {
         flex-direction: column;
     }
@@ -415,6 +439,88 @@ input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s eas
     }
     .header-register {
         font-size: 20px;
-    
+    }
+    .input-info_text {
+        margin-right: -5px;
+        margin-top: -80px;
+    }
+    .input-info_text::before {
+        top: 65px;
+        left: 270px;
+        border: 10px solid transparent; 
+        border-top: 10px solid #edb112;
+    }
+}
+@media (max-width: 500px) {
+    .section-register_form {
+        display: flex;
+        justify-content: space-between;
+        padding: 0px 15px 150px;
+    }
+    form p {
+        max-width: 100%;
+    }
+    input {
+        width: 100%;
+    }
+    .input-info {
+        width: 100%;
+    }
+    .new-select {
+        width: 100%;
+    }
+    .new-select__list {
+        width: 100%;
+    }
+    .select-data {
+        width: 100%;
+    }
+    .input-photo {
+        width: 100%;
+    }
+    .header-register {
+        display: none;
+    }
+}
+@media (max-width: 410px) {
+    .button-send {
+        padding: 7px 0px;
+        font-size: 16px;
+        margin-left: 0px;
+    }
+    .button-send_big {
+        padding: 10px 25px;
+        font-size: 20px;
+    }
+    .input-photo {
+        flex-direction: column;
+    }
+    .input-photo label {
+        margin-bottom: 5px;
+    }
+    .select-data {
+        flex-direction: column;
+    }
+    .select-data .select {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+    .form-row {
+        align-items: center;
+    }
+    .form-row p {
+        margin: 0px;
+    }
+    .input-info_text {
+        max-width: 250px;
+        margin-top: -95px;
+    }
+    .input-info_text::before {
+        content: ''; 
+        position: absolute;
+        top: 80px;
+        left: 220px;
+        border: 10px solid transparent; 
+        border-top: 10px solid #edb112;
     }
 }

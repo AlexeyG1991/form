@@ -20,15 +20,15 @@
         <div class="section-register _container-min">
             <h1>Заруєструвати Ваш прилад</h1>
             <div class="section-register_form">
-                <form class="section-register_form-info" action="sendMail.php" method="post" enctype="multipart/form-data">
+                <form class="section-register_form-info" action="#" method="post" enctype="multipart/form-data" id="register_form" name="register_form">
                     <h2>Особиста інформація</h2>
                     <div>
                         <p>Ім'я українською мовою згідно паспорту <span>*</span></p>
-                        <input placeholder="Введіть ім'я" tabindex="1" name="username" type="text">
+                        <input placeholder="Введіть ім'я" tabindex="1" name="firstname" type="text">
                     </div>
                     <div>
                         <p>Прізвище українською мовою згідно паспорту <span>*</span></p>
-                        <input placeholder="Введіть прізвище" tabindex="2" name="userlastname" type="text">
+                        <input placeholder="Введіть прізвище" tabindex="2" name="lastname" type="text">
                     </div>
                     <div>
                         <p>Моб. телефон <span>*</span></p>
@@ -36,36 +36,33 @@
                     </div>
                     <div>
                         <p>Підтвердження моб. телефону <span>*</span></p>
-                        <input placeholder="0хх-ххх-хх-хх" tabindex="4" name="userphone" type="tel">
+                        <input placeholder="0хх-ххх-хх-хх" tabindex="4" name="userphonerepeat" type="tel">
                     </div>
                     <div>
                         <p>Електронна пошта <span>*</span></p>
-                        <input placeholder="Введіть адресу" tabindex="5" name="usermail" type="text">
+                        <input placeholder="Введіть адресу" tabindex="5" name="useremail" type="text">
                     </div>
                     <div>
                         <p>Підтвердження електронної пошти <span>*</span></p>
-                        <input placeholder="Введіть адресу" tabindex="6" name="usermail" type="text">
+                        <input placeholder="Введіть адресу" tabindex="6" name="emailrepeat" type="text">
                     </div>
                     <h2>Адреса</h2>
                     <p>Область <span>*</span></p>
-                    <select tabindex="7" name="region" class="select" id="#">
-                        <option value="1" disabled>Оберіть варіанти</option>
-                        <option value="2">Київська</option>
-                        <option value="3">Харківська</option>
-                        <option value="4">Львівська</option>
+                    <select tabindex="7" name="area" class="select" id="#">
+                        <option value="" selected disabled>Оберіть варіанти</option>
                     </select>
                     <div>
                         <p>Місто/населений пункт <span>*</span></p>
-                        <input placeholder="Введіть назву" tabindex="8" name="#" type="text">
+                        <input placeholder="Введіть назву" tabindex="8" name="city" type="text">
                     </div>
                     <div>
                         <p>Індекс <span>*</span></p>
-                        <input tabindex="9" name="#" type="text">
+                        <input tabindex="9" name="index" type="text">
                     </div>
                     <p>Адреса відділення Укрпошти <span>*</span></p>
                     <p class="text-info">(на яке робимо відправку подарункового сертифікату)</p>
-                    <select tabindex="10" name="#" class="select" id="#">
-                        <option value="1" disabled>Оберіть варіанти</option>
+                    <select tabindex="10" name="#" class="select" id="#" >
+                        <option value=""  disabled>Оберіть варіанти</option>
                         <option value="2">Київська</option>
                         <option value="3">Харківська</option>
                         <option value="4">Львівська</option>
@@ -105,25 +102,22 @@
                     </div>
                     <h2>Інформація про прилад</h2>
                     <p>Прилад <span>*</span></p>
-                    <select tabindex="11" name="#" class="select" id="#">
-                        <option value="1" disabled>Назва приладу</option>
-                        <option value="2">1</option>
-                        <option value="3">2</option>
-                        <option value="4">3</option>
+                    <select tabindex="11" name="instrument" class="select" id="#">
+                        <option value=""  disabled>Назва приладу</option>
+                        <option value="Пральна машина">Пральна машина</option>
+                        <option value="Прально-сушильна машина">Прально-сушильна машина</option>
                     </select>
                     <p>Бренд <span>*</span></p>
-                    <select tabindex="12" name="#" class="select" id="#">
-                        <option value="1" disabled>Оберіть варіанти</option>
-                        <option value="2">1</option>
-                        <option value="3">2</option>
-                        <option value="4">3</option>
+                    <select tabindex="12" name="brand" class="select" id="#">
+                        <option value="" disabled>Оберіть варіанти</option>
+                        
+                        <option value="Whirlpool">Whirlpool</option>
+                        <option value="Indesit">Indesit</option>
                     </select>
                     <p>Назва моделі <span>*</span></p>
-                    <select tabindex="13" name="#" class="select" id="#">
-                        <option value="1" disabled>Оберіть варіанти</option>
-                        <option value="2">1</option>
-                        <option value="3">2</option>
-                        <option value="4">3</option>
+                    <select tabindex="13" name="modelname" class="select" id="#">
+                        <option value="" disabled>Оберіть варіанти</option>
+
                     </select>
                     <div>
                         <p>Код 12nc (комерційний код) *</p>
@@ -132,7 +126,7 @@
                     <div>
                         <p>Серійний номер <span>*</span></p>
                         <div class="input-info">
-                            <input placeholder="" tabindex="15" name="#" type="text">
+                            <input placeholder="" tabindex="15" name="serialnumber" type="text">
                             <span class="span-hover">i</span>
                             <span class="input-info_text">Серійний номер є унікальним
                                 ідентифікатором вашого
@@ -142,41 +136,46 @@
                     </div>
                     <p>Дата придбання <span>*</span></p>
                     <div class="select-data">
-                        <select tabindex="16" name="#" class="select" id="#">
+                        <input type="date" name="purchasedate" id="purchasedate">
+                        <!-- <select tabindex="16" name="day" class="select" id="#">
                             <option value="1" disabled>День</option>
                             <option value="2">1</option>
                             <option value="3">2</option>
                             <option value="4">3</option>
+                           
                         </select>
-                        <select tabindex="17" name="#" class="select" id="#">
+                        <select tabindex="17" name="month" class="select" id="#">
                             <option value="1" disabled>Місяць</option>
                             <option value="2">1</option>
                             <option value="3">2</option>
                             <option value="4">3</option>
                         </select>
-                        <select tabindex="18" name="#" class="select" id="#">
+                        <select tabindex="18" name="year" class="select" id="#">
                             <option value="1" disabled>Рік</option>
                             <option value="2">1</option>
                             <option value="3">2</option>
                             <option value="4">3</option>
-                        </select>
+                        </select> -->
                     </div>
                     <div>
                         <p>Номер фіксального чеку <span>*</span></p>
-                        <input placeholder="" tabindex="19" name="userphone" type="text">
+                        <input placeholder="" tabindex="19" name="fiscalCheck" type="text">
                     </div>
                     <p>Назва магазину <span>*</span></p>
-                    <select tabindex="20" name="#" class="select" id="#">
-                        <option value="1" disabled>Оберіть варіанти</option>
-                        <option value="2">1</option>
-                        <option value="3">2</option>
-                        <option value="4">3</option>
+                    <select tabindex="20" name="shopname" class="select" id="#">
+                        <option value=""  disabled>Оберіть варіанти</option>
+                        <option value="COMFY">COMFY</option>
+                        <option value="Eldorado">Eldorado</option>
+                        <option value="Фокстрот">Фокстрот</option>
+                        <option value="Епіцентр">Епіцентр</option>
+                        <option value="Rozetka">Rozetka</option>
+                        <option value="whirlpool-store.com.ua">whirlpool-store.com.ua</option>
                     </select>
                     <div>
                         <p>Поле для завантаження фото <span>*</span></p>
                         <div class="input-photo">
-                            <input class="hide inputfile" name="photo" tabindex="21" type="file" id="upload"
-                                data-multiple-caption="{count} files selected" multiple>
+                            <input class="hide inputfile" tabindex="21" type="file" id="upload"
+                                data-multiple-caption="{count} files selected" multiple name="photodownload">
                             <label for="upload"><span>Завантажити фото</span></label>
                             <button class="button-send" tabindex="22" type="submit">Завантажити</button>
                         </div>
@@ -185,7 +184,7 @@
                         виробу, ціну придбання.</p>
                     <p class="p-last">Обов'язкові поля <span>*</span></p>
                     <div class="button-end">
-                        <button class="button-send button-send_big" tabindex="23" type="submit">Зареєструвати</button>
+                        <button id="mainsubmitbutton" class="button-send button-send_big" tabindex="23" type="submit">Зареєструвати</button>
                     </div>
                 </form>
                 <div class="section-register_form-img">
@@ -196,7 +195,9 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    <script src="js/validate.js"></script>
     <script src="js/script.js"></script>
+   
 </body>
 
 </html>
