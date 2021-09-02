@@ -417,6 +417,10 @@ input:disabled,
     border: none;
 }
 
+.dirty {
+    color: #353535;
+}
+
 @media (max-width: 1315px) {
     .input-info_text {
         margin-right: -318px;
