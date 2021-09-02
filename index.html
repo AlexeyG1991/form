@@ -35,16 +35,20 @@
                         <input placeholder="0хх-ххх-хх-хх" tabindex="3" name="userphone" type="tel">
                     </div>
                     <div>
+                        <p>Підтвердження моб. телефону <span>*</span></p>
+                        <input placeholder="0хх-ххх-хх-хх" tabindex="4" name="userphone" type="tel">
+                    </div>
+                    <div>
                         <p>Електронна пошта <span>*</span></p>
-                        <input placeholder="Введіть адресу" tabindex="4" name="userphone" type="text">
+                        <input placeholder="Введіть адресу" tabindex="5" name="userphone" type="text">
                     </div>
                     <div>
                         <p>Підтвердження електронної пошти <span>*</span></p>
-                        <input placeholder="Введіть адресу" tabindex="5" name="#" type="text">
+                        <input placeholder="Введіть адресу" tabindex="6" name="#" type="text">
                     </div>
                     <h2>Адреса</h2>
                     <p>Область <span>*</span></p>
-                    <select tabindex="6" name="#" class="select" id="#">
+                    <select tabindex="7" name="#" class="select" id="#">
                         <option value="1" disabled>Оберіть варіанти</option>
                         <option value="2">Київська</option>
                         <option value="3">Харківська</option>
@@ -52,23 +56,19 @@
                     </select>
                     <div>
                         <p>Місто/населений пункт <span>*</span></p>
-                        <input placeholder="Введіть назву" tabindex="5" name="#" type="text">
+                        <input placeholder="Введіть назву" tabindex="8" name="#" type="text">
                     </div>
-                    <p>Адреса відділення Нової пошти <span>*</span></p>
+                    <div>
+                        <p>Індекс <span>*</span></p>
+                        <input tabindex="9" name="#" type="text">
+                    </div>
+                    <p>Адреса відділення Укрпошти <span>*</span></p>
                     <p class="text-info">(на яке робимо відправку подарункового сертифікату)</p>
-                    <select tabindex="7" name="#" class="select" id="#">
+                    <select tabindex="10" name="#" class="select" id="#">
                         <option value="1" disabled>Оберіть варіанти</option>
                         <option value="2">Київська</option>
                         <option value="3">Харківська</option>
                         <option value="4">Львівська</option>
-                    </select>
-                    <p>№ відділення Нової пошти <span>*</span></p>
-                    <p class="text-info">(на яке робимо відправку подарункового сертифікату)</p>
-                    <select tabindex="8" name="#" class="select" id="#">
-                        <option value="1" disabled>Оберіть варіанти</option>
-                        <option value="2">1</option>
-                        <option value="3">2</option>
-                        <option value="4">3</option>
                     </select>
                     <h2>Конфіденційність</h2>
                     <p class="p-radio">Я повністю приймаю повідомлення про порядок поводження з особистою інформацією, а
@@ -87,10 +87,13 @@
                         </div>
                         </label>
                     </div>
-                    <p class="p-radio">Повідомлення про відправлення інформації про рекламні кампанії та спеціальні
-                        акції</p>
+                    <h2>Повідомлення про відпралення інформації про рекламні кампанії та спеціальні акції</h2>
+                    <p class="p-radio">Я погоджуюсь отримувати від ТОВ "Вірлпул Компані Україна" повідомлення
+                        електронною поштою та через смс-повідомлення про рекламні кампанії, спеціальні акції, події та
+                        іншу інформацію, яка описана у повній версії повідомлення про порядок поводження з персональними
+                        даними. <span>*</span></p>
                     <div class="form-row">
-                        <p>Я згоден(на) <span>*</span></p>
+                        <!-- <p>Я згоден(на) <span>*</span></p> -->
                         <div class="form_radio">
                             <input id="radio-3" type="radio" name="rad" value="3">
                             <label for="radio-3">Так</label>
@@ -134,7 +137,7 @@
                             <span class="input-info_text">Серійний номер є унікальним
                                 ідентифікатором вашого
                                 пристрою
-                                (наприклад. 379633322115)</span>
+                                (наприклад. 379633322115).</span>
                         </div>
                     </div>
                     <p>Дата придбання <span>*</span></p>
@@ -181,7 +184,7 @@
                     <p>На зображенні чеку має бути чітко видно дату купівлі, назву та адресу магазину, назву та модель
                         виробу, ціну придбання.</p>
                     <p class="p-last">Обов'язкові поля <span>*</span></p>
-                    <div>
+                    <div class="button-end">
                         <button class="button-send button-send_big" tabindex="23" type="submit">Зареєструвати</button>
                     </div>
                 </form>
