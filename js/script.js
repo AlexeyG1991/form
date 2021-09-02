@@ -37,7 +37,7 @@ $(".select").each(function () {
 				selectItem.on("click", function () {
 					let chooseItem = $(this).data("value");
 					console.log(chooseItem);
-					$("select").val(chooseItem).attr("selected", "selected");
+					$("select").val(chooseItem);
 					selectHead.text($(this).find("span").text());
 					selectList.slideUp(duration);
 					selectHead.removeClass("on");
