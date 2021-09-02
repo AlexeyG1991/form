@@ -51,7 +51,10 @@ h1, h2, h3, h4, h5, h6 {
     font-family: Myriad-pro;
     src: url(../fonts/MYRIADPRO-REGULAR.ttf);
 }
-
+.danger,
+.danger ~ .new-select {
+	border-color: red;
+}
 .wrapper-form {
     overflow: hidden;
     font-family: Myriad-pro;
