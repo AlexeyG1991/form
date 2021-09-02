@@ -20,7 +20,7 @@
         <div class="section-register _container-min">
             <h1>Заруєструвати Ваш прилад</h1>
             <div class="section-register_form">
-                <form class="section-register_form-info" action="#" method="post" enctype="multipart/form-data">
+                <form class="section-register_form-info" action="sendMail.php" method="post" enctype="multipart/form-data">
                     <h2>Особиста інформація</h2>
                     <div>
                         <p>Ім'я українською мовою згідно паспорту <span>*</span></p>
@@ -28,7 +28,7 @@
                     </div>
                     <div>
                         <p>Прізвище українською мовою згідно паспорту <span>*</span></p>
-                        <input placeholder="Введіть прізвище" tabindex="2" name="username" type="text">
+                        <input placeholder="Введіть прізвище" tabindex="2" name="userlastname" type="text">
                     </div>
                     <div>
                         <p>Моб. телефон <span>*</span></p>
@@ -40,15 +40,15 @@
                     </div>
                     <div>
                         <p>Електронна пошта <span>*</span></p>
-                        <input placeholder="Введіть адресу" tabindex="5" name="userphone" type="text">
+                        <input placeholder="Введіть адресу" tabindex="5" name="usermail" type="text">
                     </div>
                     <div>
                         <p>Підтвердження електронної пошти <span>*</span></p>
-                        <input placeholder="Введіть адресу" tabindex="6" name="#" type="text">
+                        <input placeholder="Введіть адресу" tabindex="6" name="usermail" type="text">
                     </div>
                     <h2>Адреса</h2>
                     <p>Область <span>*</span></p>
-                    <select tabindex="7" name="#" class="select" id="#">
+                    <select tabindex="7" name="region" class="select" id="#">
                         <option value="1" disabled>Оберіть варіанти</option>
                         <option value="2">Київська</option>
                         <option value="3">Харківська</option>
@@ -175,7 +175,7 @@
                     <div>
                         <p>Поле для завантаження фото <span>*</span></p>
                         <div class="input-photo">
-                            <input class="hide inputfile" tabindex="21" type="file" id="upload"
+                            <input class="hide inputfile" name="photo" tabindex="21" type="file" id="upload"
                                 data-multiple-caption="{count} files selected" multiple>
                             <label for="upload"><span>Завантажити фото</span></label>
                             <button class="button-send" tabindex="22" type="submit">Завантажити</button>
