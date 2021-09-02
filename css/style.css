@@ -50,6 +50,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .wrapper-form {
+    overflow: hidden;
 }
 ._container-max {
     max-width: 1400px;
@@ -167,9 +168,16 @@ input {
     right: 5px;
     background-color: #edb112;
     color: #353535;
-    margin-right: -135%;
+    margin-right: -137%;
     opacity: 0;
     transition: all 0.3s ease 0s;
+}
+.input-info_text::before {
+    content: ''; 
+    position: absolute;
+    left: -15px; top: 13px;
+    border: 5px solid transparent;
+    border-right: 10px solid #edb112;
 }
 .span-hover:hover {
     background-color: #edb112;
@@ -235,6 +243,10 @@ input {
     padding-right: 30px;
     margin-bottom: 29%;
     flex: 40%;
+}
+.section-register_form-img img {
+    width: 100%;
+    height: auto;
 }
 
 ::-webkit-input-placeholder {color:#cbcac9;}
@@ -358,6 +370,9 @@ input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s eas
 .p-last {
     margin: 40px 0 70px;
 }
+.button-end {
+    margin-bottom: 100px;
+}
 .button-send {
     color: #353535;
     display: flex;
@@ -380,4 +395,26 @@ input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s eas
     z-index: -1;
     width: 1px;
     height: 1px;
+}
+
+@media (max-width: 768px) {
+    .section-register_form {
+        flex-direction: column;
+    }
+    .section-register_form-info {
+        flex: 100%;
+    }
+    .section-register_form-img {
+        align-self: center;
+        padding-right: 0px;
+        margin-bottom: 0;
+        flex: 100%;
+    }
+    .header-label a {
+        font-size: 25px;
+    }
+    .header-register {
+        font-size: 20px;
+    
+    }
 }
