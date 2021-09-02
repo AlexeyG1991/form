@@ -411,6 +411,12 @@ input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s eas
     height: 1px;
 }
 
+input:disabled,
+.disabled {
+    background-color: #f5f5f5;
+    border: none;
+}
+
 @media (max-width: 1315px) {
     .input-info_text {
         margin-right: -318px;
