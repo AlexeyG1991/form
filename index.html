@@ -172,7 +172,9 @@
                     <div>
                         <p>Поле для завантаження фото <span>*</span></p>
                         <div class="input-photo">
-                            <input tabindex="21" type="file">
+                            <input class="hide inputfile" tabindex="21" type="file" id="upload"
+                                data-multiple-caption="{count} files selected" multiple>
+                            <label for="upload"><span>Завантажити фото</span></label>
                             <button class="button-send" tabindex="22" type="submit">Завантажити</button>
                         </div>
                     </div>
@@ -180,7 +182,7 @@
                         виробу, ціну придбання.</p>
                     <p class="p-last">Обов'язкові поля <span>*</span></p>
                     <div>
-                        <button class="button-send" tabindex="23" type="submit">Завантажити</button>
+                        <button class="button-send button-send_big" tabindex="23" type="submit">Зареєструвати</button>
                     </div>
                 </form>
                 <div class="section-register_form-img">

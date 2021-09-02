@@ -344,6 +344,16 @@ input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s eas
 }
 .input-photo {
     display: flex;
+    width: 80%;
+}
+.input-photo label {
+    border: 1px solid #edb112;
+    border-radius: 3px;
+    padding: 7px;
+    margin-bottom: 25px;
+    width: 100%;
+    color: #cbcac9;
+    cursor: pointer;
 }
 .p-last {
     margin: 40px 0 70px;
@@ -355,7 +365,19 @@ input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s eas
     justify-content: center;
     background-color: #edb112;
     border-radius: 3px;
-    height: 40px;
-    padding: 0 15px;
+    padding: 0px 20px 5px;
     font-size: 20px;
+    margin-bottom: 25px;
+    margin-left: -3px;
+}
+.button-send_big {
+    padding: 10px 25px 15px;
+}
+.hide {
+    position: absolute;
+    overflow: hidden;
+    opacity: 0;
+    z-index: -1;
+    width: 1px;
+    height: 1px;
 }
