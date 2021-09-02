@@ -36,8 +36,8 @@ $(".select").each(function () {
 				selectList.slideDown(duration);
 				selectItem.on("click", function () {
 					let chooseItem = $(this).data("value");
-					console.log(chooseItem);
-					$("select").val(chooseItem);
+
+					_this.val(chooseItem).attr("selected", "selected");
 					selectHead.text($(this).find("span").text());
 					selectList.slideUp(duration);
 					selectHead.removeClass("on");

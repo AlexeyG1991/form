@@ -419,10 +419,10 @@ submit.addEventListener("click", (e) => {
 		e.classList.remove("danger");
 	});
 	const result = {
-		firstname: mainForm.firstname.value,
-		lastname: mainForm.lastname.value,
-		phone: mainForm.userphone.value,
-		email: mainForm.useremail.value,
+		username: mainForm.firstname.value,
+		userlastname: mainForm.lastname.value,
+		userphone: mainForm.userphone.value,
+		usermail: mainForm.useremail.value,
 		area: mainForm.area.value,
 		city: mainForm.city.value,
 		index: mainForm.index.value,
@@ -436,7 +436,18 @@ submit.addEventListener("click", (e) => {
 		shopname: mainForm.shopname.value,
 		photo: false,
 	};
-	console.log(result);
+	$.ajax({
+		url: "/sendMail.php",
+		type: "POST",
+		async: true,
+		data: result,
+		success: function (data) {
+			console.log("ok");
+		},
+		error: function (data) {
+			console.log("bad");
+		},
+	});
 
 	validate(mainForm);
 });
