@@ -41,6 +41,9 @@ $(".select").each(function () {
 					selectHead.text($(this).find("span").text());
 					selectList.slideUp(duration);
 					selectHead.removeClass("on");
+					if (_this.val()) {
+						$(selectHead).addClass("dirty");
+					}
 				});
 			} else {
 				$(this).removeClass("on");
