@@ -20,15 +20,15 @@
         <div class="section-register _container-min">
             <h1>Заруєструвати Ваш прилад</h1>
             <div class="section-register_form">
-                <form class="section-register_form-info" action="#" method="post" enctype="multipart/form-data">
+                <form class="section-register_form-info" action="#" method="post" enctype="multipart/form-data" id="register_form" name="register_form">
                     <h2>Особиста інформація</h2>
                     <div>
                         <p>Ім'я українською мовою згідно паспорту <span>*</span></p>
-                        <input placeholder="Введіть ім'я" tabindex="1" name="username" type="text">
+                        <input placeholder="Введіть ім'я" tabindex="1" name="firstname" type="text">
                     </div>
                     <div>
                         <p>Прізвище українською мовою згідно паспорту <span>*</span></p>
-                        <input placeholder="Введіть прізвище" tabindex="2" name="username" type="text">
+                        <input placeholder="Введіть прізвище" tabindex="2" name="lastname" type="text">
                     </div>
                     <div>
                         <p>Моб. телефон <span>*</span></p>
@@ -36,19 +36,19 @@
                     </div>
                     <div>
                         <p>Підтвердження моб. телефону <span>*</span></p>
-                        <input placeholder="0хх-ххх-хх-хх" tabindex="4" name="userphone" type="tel">
+                        <input placeholder="0хх-ххх-хх-хх" tabindex="4" name="userphonerepeat" type="tel">
                     </div>
                     <div>
                         <p>Електронна пошта <span>*</span></p>
-                        <input placeholder="Введіть адресу" tabindex="5" name="userphone" type="text">
+                        <input placeholder="Введіть адресу" tabindex="5" name="useremail" type="text">
                     </div>
                     <div>
                         <p>Підтвердження електронної пошти <span>*</span></p>
-                        <input placeholder="Введіть адресу" tabindex="6" name="#" type="text">
+                        <input placeholder="Введіть адресу" tabindex="6" name="emailrepeat" type="text">
                     </div>
                     <h2>Адреса</h2>
                     <p>Область <span>*</span></p>
-                    <select tabindex="7" name="#" class="select" id="#">
+                    <select tabindex="7" name="area" class="select" id="#">
                         <option value="1" disabled>Оберіть варіанти</option>
                         <option value="2">Київська</option>
                         <option value="3">Харківська</option>
@@ -56,7 +56,7 @@
                     </select>
                     <div>
                         <p>Місто/населений пункт <span>*</span></p>
-                        <input placeholder="Введіть назву" tabindex="8" name="#" type="text">
+                        <input placeholder="Введіть назву" tabindex="8" name="city" type="text">
                     </div>
                     <div>
                         <p>Індекс <span>*</span></p>
@@ -163,7 +163,7 @@
                     </div>
                     <div>
                         <p>Номер фіксального чеку <span>*</span></p>
-                        <input placeholder="" tabindex="19" name="userphone" type="text">
+                        <input placeholder="" tabindex="19" name="fiscalCheck" type="text">
                     </div>
                     <p>Назва магазину <span>*</span></p>
                     <select tabindex="20" name="#" class="select" id="#">
@@ -197,6 +197,7 @@
 
     <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/validate.js"></script>
 </body>
 
 </html>
