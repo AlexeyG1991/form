@@ -414,6 +414,14 @@ const validate = (form) => {
 	if (validateRequired(form.photodownload, 2, 256))
 		invalid.push(form.photodownload);
 
+	if (mainForm.cost) {
+		if (validateRequired(form.cost, 1, 20)) invalid.push(form.cost);
+	}
+	if (mainForm.photodownload2) {
+		if (validateRequired(form.photodownload2, 2, 256))
+			invalid.push(form.photodownload2);
+	}
+	console.log(invalid);
 	invalid.forEach((e) => {
 		e.classList.add("danger");
 	});
