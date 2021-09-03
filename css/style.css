@@ -166,7 +166,7 @@ input {
     border: 1px solid #edb112;
     color: #edb112;
     border-radius: 50%;
-    z-index: 5;
+    z-index: 2;
     cursor: pointer;
     transition: all 0.3s ease 0s;
 }
