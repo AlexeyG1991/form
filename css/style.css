@@ -55,6 +55,12 @@ h1, h2, h3, h4, h5, h6 {
 .danger ~ .new-select {
 	border-color: red;
 }
+.error-text {
+    color: red;
+    font-size: 14px;
+    max-width: 80%;
+    display: none;
+}
 .wrapper-form {
     overflow: hidden;
     font-family: Myriad-pro;
