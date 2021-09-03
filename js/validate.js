@@ -354,35 +354,37 @@ function getDifferenceInDays(date1, date2) {
 	const diffInMs = date2 - date1;
 	return diffInMs / (1000 * 60 * 60 * 24);
 }
-// mainForm.brand.addEventListener("select", () => console.log());
-// const validateAgree = () => {
-// 	if (
-// 		(!mainForm["radio-1"].checked && !mainForm["radio-1"].checked) ||
-// 		(!mainForm["radio-3"].checked && !mainForm["radio-4"].checked)
-// 	) {
-// 		mainForm.instrument.classList.add("disabled");
-// 		mainForm.brand.classList.add("disabled");
-// 		mainForm.modelname.classList.add("disabled");
-// 		mainForm.serialnumber.classList.add("disabled");
-// 		mainForm.purchasedate.classList.add("disabled");
-// 		mainForm.fiscalCheck.classList.add("disabled");
-// 		mainForm.shopname.classList.add("disabled");
-// 		mainForm.photodownload.classList.add("disabled");
-// 		mainForm.instrument.disabled = true;
-// 		mainForm.modelname.disabled = true;
-// 		mainForm.brand.disabled = true;
-// 		mainForm.serialnumber.disabled = true;
-// 		mainForm.purchasedate.disabled = true;
-// 		mainForm.fiscalCheck.disabled = true;
-// 		mainForm.shopname.disabled = true;
-// 		mainForm.photodownload.disabled = true;
-// 	}
-// };
-// mainForm["radio-1"].addEventListener("change", validateAgree);
-// mainForm["radio-2"].addEventListener("change", validateAgree);
-// mainForm["radio-3"].addEventListener("change", validateAgree);
-// mainForm["radio-4"].addEventListener("change", validateAgree);
-// validateAgree();
+mainForm.brand.addEventListener("select", () => console.log());
+const validateAgree = () => {
+	if (
+		(mainForm["radio-1"].checked || mainForm["radio-2"].checked) &&
+		(mainForm["radio-3"].checked || mainForm["radio-4"].checked)
+	) {
+		mainForm.instrument.nextElementSibling.classList.remove("disabled");
+		mainForm.brand.nextElementSibling.classList.remove("disabled");
+		mainForm.modelname.nextElementSibling.classList.remove("disabled");
+		mainForm.shopname.nextElementSibling.classList.remove("disabled");
+		mainForm.serialnumber.disabled = false;
+		mainForm.purchasedate.disabled = false;
+		mainForm.fiscalCheck.disabled = false;
+		mainForm.shopname.disabled = false;
+		mainForm.photodownload.disabled = false;
+	} else {
+		mainForm.instrument.nextElementSibling.classList.add("disabled");
+		mainForm.brand.nextElementSibling.classList.add("disabled");
+		mainForm.modelname.nextElementSibling.classList.add("disabled");
+		mainForm.shopname.nextElementSibling.classList.add("disabled");
+		mainForm.serialnumber.disabled = true;
+		mainForm.purchasedate.disabled = true;
+		mainForm.fiscalCheck.disabled = true;
+		mainForm.shopname.disabled = true;
+		mainForm.photodownload.disabled = true;
+	}
+};
+mainForm["radio-1"].addEventListener("change", validateAgree);
+mainForm["radio-2"].addEventListener("change", validateAgree);
+mainForm["radio-3"].addEventListener("change", validateAgree);
+mainForm["radio-4"].addEventListener("change", validateAgree);
 
 const validate = (form) => {
 	const invalid = [];
@@ -403,13 +405,15 @@ const validate = (form) => {
 	if (validateDate(form.purchasedate)) invalid.push(form.purchasedate);
 	if (validateRequired(form.fiscalCheck, 2, 40)) invalid.push(form.fiscalCheck);
 	if (validateRequired(form.shopname)) invalid.push(form.shopname);
+	if (validateRequired(form.serialnumber, 10, 40))
+		invalid.push(form.serialnumber);
 	if (validateRequired(form.photodownload, 2, 256))
 		invalid.push(form.photodownload);
 
 	invalid.forEach((e) => {
 		e.classList.add("danger");
 	});
-	return invalid;
+	return !invalid.length;
 };
 
 const submit = document.getElementById("mainsubmitbutton");
@@ -418,36 +422,37 @@ submit.addEventListener("click", (e) => {
 	Array.from(mainForm.elements).forEach((e) => {
 		e.classList.remove("danger");
 	});
-	const result = {
-		username: mainForm.firstname.value,
-		userlastname: mainForm.lastname.value,
-		userphone: mainForm.userphone.value,
-		usermail: mainForm.useremail.value,
-		area: mainForm.area.value,
-		city: mainForm.city.value,
-		index: mainForm.index.value,
-		device: mainForm.instrument.value,
-		brand: mainForm.brand.value,
-		model: mainForm.modelname.value,
-		date: mainForm.purchasedate.value,
-		nc12: mainForm.nc12.value,
-		serialnumber: mainForm.serialnumber.value,
-		fiscalCheck: mainForm.fiscalCheck.value,
-		shopname: mainForm.shopname.value,
-		photo: false,
-	};
-	$.ajax({
-		url: "/send-mail.php",
-		type: "POST",
-		async: true,
-		data: result,
-		success: function (data) {
-			console.log("ok");
-		},
-		error: function (data) {
-			console.log("bad");
-		},
-	});
 
-	validate(mainForm);
+	if (validate(mainForm)) {
+		const result = {
+			username: mainForm.firstname.value,
+			userlastname: mainForm.lastname.value,
+			userphone: mainForm.userphone.value,
+			usermail: mainForm.useremail.value,
+			area: mainForm.area.value,
+			city: mainForm.city.value,
+			index: mainForm.index.value,
+			device: mainForm.instrument.value,
+			brand: mainForm.brand.value,
+			model: mainForm.modelname.value,
+			date: mainForm.purchasedate.value,
+			nc12: mainForm.nc12.value,
+			serialnumber: mainForm.serialnumber.value,
+			fiscalCheck: mainForm.fiscalCheck.value,
+			shopname: mainForm.shopname.value,
+			photo: false,
+		};
+		$.ajax({
+			url: "/sendMail.php",
+			type: "POST",
+			async: true,
+			data: result,
+			success: function (data) {
+				console.log("ok");
+			},
+			error: function (data) {
+				console.log("bad");
+			},
+		});
+	}
 });
