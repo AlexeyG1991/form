@@ -313,6 +313,19 @@ const mainForm = document.forms["register_form"];
 // mainForm.brand.addEventListener("change", (e) => {
 // 	fillOptions(products.filter(e => e.brand ===mainForm.brand.value).map(e=>e.model),mainForm.modelname)
 // });
+mainForm.userphonerepeat.addEventListener("input", () => {
+	validateRepeat(mainForm.userphonerepeat, mainForm.userphone.value)
+		? mainForm.userphonerepeat.classList.add("danger")
+		: mainForm.userphonerepeat.classList.remove("danger");
+});
+mainForm.emailrepeat.addEventListener("input", () => {
+	validateRepeat(mainForm.emailrepeat, mainForm.useremail.value)
+		? mainForm.emailrepeat.classList.add("danger")
+		: mainForm.emailrepeat.classList.remove("danger");
+});
+mainForm.emailrepeat.addEventListener("input", () => {
+	val;
+});
 
 const fillOptions = (options, target) => {
 	options.forEach((e) => {
@@ -425,7 +438,6 @@ const validate = (form) => {
 		if (validateRequired(form.photodownload2, 2, 256))
 			invalid.push(form.photodownload2);
 	}
-	console.log(invalid);
 	invalid.forEach((e) => {
 		e.classList.add("danger");
 	});
