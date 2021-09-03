@@ -323,9 +323,6 @@ mainForm.emailrepeat.addEventListener("input", () => {
 		? mainForm.emailrepeat.classList.add("danger")
 		: mainForm.emailrepeat.classList.remove("danger");
 });
-mainForm.emailrepeat.addEventListener("input", () => {
-	val;
-});
 
 const fillOptions = (options, target) => {
 	options.forEach((e) => {
