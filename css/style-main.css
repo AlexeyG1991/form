@@ -178,25 +178,85 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #fff;
     color: #353535;
     /* max-width: 600px; */
-    padding: 45px 30px;
+    padding: 30px 30px 45px;
 }
 .ot-sdk-twelve {
 }
 .ot-sdk-columns {
 }
 .banner-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
 }
 .onetrust-policy-title {
+    font-weight: 600;
+    font-size: 25px;
+    letter-spacing: 1px;
 }
 .onetrust-close-btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    width: 20px;
+    height: 20px;
+    padding: 0px 1px 0px 0px;
+    color: #555;
+    background-color: rgb(202, 202, 202);
+    font-size: 26px;
+    transform: rotate(45deg);
+    transition: all 0.3s ease 0s;
+}
+.onetrust-close-btn-container:hover {
+    color: rgb(146, 146, 146);
+    background-color: rgb(219, 215, 215);
 }
 .onetrust-policy-text {
+    line-height: 1.5;
+    margin-bottom: 40px;
+}
+.onetrust-policy-text span a {
+    font-weight: 600;
+    color: #edb112;
+    letter-spacing: 1px;
+    text-decoration: underline;
+}
+.onetrust-policy-text span a:hover {
+    color: #dfbd61;
 }
 .banner-actions-container {
+    display: flex;
+    justify-content: flex-end;
 }
 .banner-actions-container_cookies {
+    padding: 15px 12px;
+    background-color: #edb112;
+    color: #fff;
+    border-radius: 5px;
+    text-transform: uppercase;
+    transition: all 0.3s ease 0s;
+    margin: 0 25px 15px;
+}
+.banner-actions-container_cookies:hover {
+    background-color: #dfbd61;
 }
 .banner-actions-container_preference {
+    padding: 15px 30px;
+    background-color: #fff;
+    color: #edb112;
+    border-radius: 5px;
+    text-transform: uppercase;
+    border: 1px solid #edb112;
+    width: 230px;
+    transition: all 0.3s ease 0s;
+    margin: 0 25px;
+}
+.banner-actions-container_preference:hover {
+    background-color: #dfbd61;
+    color: #fff;
+    border: 1px solid #dfbd61;
 }
 
 /* ----------@media------------- */
@@ -206,9 +266,33 @@ h1, h2, h3, h4, h5, h6 {
         justify-content: center;
     }
 }
+@media (max-width: 800px) {
+    .banner-actions-container_cookies {
+        padding: 10px;
+        margin: 0 20px 15px 0;
+    }
+    .banner-actions-container_preference {
+        padding: 10px;
+        margin: 0;
+    }
+}
 @media (max-width: 600px) {
     .header_whirlpool-title {
         font-size: 35px;
+    }
+    .vertical-align-content {
+        width: 90%;
+        max-width: 100%;
+        left: 1px;
+    }
+    .banner-actions-container {
+        flex-direction: column;
+    }
+    .banner-actions-container_cookies {
+        margin: 0 0 15px 0;
+    }
+    .banner-actions-container_preference {
+        width: 100%;
     }
 }
 @media (max-width: 400px) {

@@ -138,7 +138,10 @@
                     <p>Дата придбання <span>*</span></p>
                     <div class="select-data">
                         <input type="date" name="purchasedate" id="purchasedate">
-
+                    </div>
+                    <div>
+                        <p>Вартість приладу <span>*</span></p>
+                        <input placeholder="" tabindex="19" name="fiscalCheck" type="text">
                     </div>
                     <div>
                         <p>Номер фіксального чеку <span>*</span></p>
@@ -155,7 +158,17 @@
                         <option value="whirlpool-store.com.ua">whirlpool-store.com.ua</option>
                     </select>
                     <div>
-                        <p>Поле для завантаження фото <span>*</span></p>
+                        <p>Поле для завантаження фото чеку <span>*</span></p>
+                        <div class="input-photo">
+                            <input class="hide inputfile" tabindex="21" type="file" id="upload"
+                                data-multiple-caption="{count} files selected" multiple name="photodownload">
+                            <label for="upload"><span>Завантажити фото</span></label>
+                            <button class="button-send" tabindex="22">Завантажити</button>
+                        </div>
+                    </div>
+                    <div>
+                        <p>Поле для завантаження фото Реєстраційного номеру облікової картки платника податків
+                            <span>*</span></p>
                         <div class="input-photo">
                             <input class="hide inputfile" tabindex="21" type="file" id="upload"
                                 data-multiple-caption="{count} files selected" multiple name="photodownload">
