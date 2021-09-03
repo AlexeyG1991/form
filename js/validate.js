@@ -437,7 +437,7 @@ submit.addEventListener("click", (e) => {
 		photo: false,
 	};
 	$.ajax({
-		url: "/sendMail.php",
+		url: "/send-mail.php",
 		type: "POST",
 		async: true,
 		data: result,
