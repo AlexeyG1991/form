@@ -313,6 +313,19 @@ const mainForm = document.forms["register_form"];
 // mainForm.brand.addEventListener("change", (e) => {
 // 	fillOptions(products.filter(e => e.brand ===mainForm.brand.value).map(e=>e.model),mainForm.modelname)
 // });
+mainForm.userphonerepeat.addEventListener("input", () => {
+	validateRepeat(mainForm.userphonerepeat, mainForm.userphone.value)
+		? mainForm.userphonerepeat.classList.add("danger")
+		: mainForm.userphonerepeat.classList.remove("danger");
+});
+mainForm.emailrepeat.addEventListener("input", () => {
+	validateRepeat(mainForm.emailrepeat, mainForm.useremail.value)
+		? mainForm.emailrepeat.classList.add("danger")
+		: mainForm.emailrepeat.classList.remove("danger");
+});
+mainForm.emailrepeat.addEventListener("input", () => {
+	val;
+});
 
 const fillOptions = (options, target) => {
 	options.forEach((e) => {
@@ -372,6 +385,8 @@ const validateAgree = () => {
 		mainForm.fiscalCheck.disabled = false;
 		mainForm.shopname.disabled = false;
 		mainForm.photodownload.disabled = false;
+		if (mainForm.cost) mainForm.cost.disabled = false;
+		if (mainForm.photodownload2) mainForm.photodownload2.disabled = false;
 	} else {
 		mainForm.instrument.nextElementSibling.classList.add("disabled");
 		mainForm.brand.nextElementSibling.classList.add("disabled");
@@ -382,6 +397,8 @@ const validateAgree = () => {
 		mainForm.fiscalCheck.disabled = true;
 		mainForm.shopname.disabled = true;
 		mainForm.photodownload.disabled = true;
+		if (mainForm.photodownload2) mainForm.photodownload2.disabled = true;
+		if (mainForm.cost) mainForm.cost.disabled = true;
 	}
 };
 mainForm["radio-1"].addEventListener("change", validateAgree);
@@ -414,6 +431,13 @@ const validate = (form) => {
 	if (validateRequired(form.photodownload, 2, 256))
 		invalid.push(form.photodownload);
 
+	if (mainForm.cost) {
+		if (validateRequired(form.cost, 1, 20)) invalid.push(form.cost);
+	}
+	if (mainForm.photodownload2) {
+		if (validateRequired(form.photodownload2, 2, 256))
+			invalid.push(form.photodownload2);
+	}
 	invalid.forEach((e) => {
 		e.classList.add("danger");
 	});
