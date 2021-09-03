@@ -310,6 +310,9 @@ areas = [
 ];
 
 const mainForm = document.forms["register_form"];
+// mainForm.brand.addEventListener("change", (e) => {
+// 	fillOptions(products.filter(e => e.brand ===mainForm.brand.value).map(e=>e.model),mainForm.modelname)
+// });
 
 const fillOptions = (options, target) => {
 	options.forEach((e) => {
@@ -402,6 +405,7 @@ const validate = (form) => {
 	if (validateRequired(form.instrument)) invalid.push(form.instrument);
 	if (validateRequired(form.brand)) invalid.push(form.brand);
 	if (validateRequired(form.modelname, 2, 40)) invalid.push(form.modelname);
+	if (validateRequired(form.nc12, 2, 40)) invalid.push(form.nc12);
 	if (validateDate(form.purchasedate)) invalid.push(form.purchasedate);
 	if (validateRequired(form.fiscalCheck, 2, 40)) invalid.push(form.fiscalCheck);
 	if (validateRequired(form.shopname)) invalid.push(form.shopname);
@@ -422,31 +426,16 @@ submit.addEventListener("click", (e) => {
 	Array.from(mainForm.elements).forEach((e) => {
 		e.classList.remove("danger");
 	});
-
 	if (validate(mainForm)) {
-		const result = {
-			username: mainForm.firstname.value,
-			userlastname: mainForm.lastname.value,
-			userphone: mainForm.userphone.value,
-			usermail: mainForm.useremail.value,
-			area: mainForm.area.value,
-			city: mainForm.city.value,
-			index: mainForm.index.value,
-			device: mainForm.instrument.value,
-			brand: mainForm.brand.value,
-			model: mainForm.modelname.value,
-			date: mainForm.purchasedate.value,
-			nc12: mainForm.nc12.value,
-			serialnumber: mainForm.serialnumber.value,
-			fiscalCheck: mainForm.fiscalCheck.value,
-			shopname: mainForm.shopname.value,
-			photo: false,
-		};
+		const formData = new FormData(mainForm);
+
 		$.ajax({
 			url: "/send-mail.php",
 			type: "POST",
 			async: true,
-			data: result,
+			processData: false,
+			contentType: false,
+			data: formData,
 			success: function (data) {
 				console.log("ok");
 			},
