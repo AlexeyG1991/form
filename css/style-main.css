@@ -1,0 +1,218 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+*, *::before, *::after {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+:focus, :active {
+    outline: none;
+}
+a:focus, a:active {
+    outline: none;
+}
+nav, footer, header, aside {
+    display: block;
+}
+html, body {
+    height: 100%;
+    width: 100%;
+    line-height: 1;
+    font-size: 16px;
+    background-color: #fff;
+    color: #353535;
+    scroll-behavior: smooth;
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+}
+button {
+    cursor: pointer;
+}
+a, a:visited {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+}
+ul li {
+    list-style: none;
+}
+img {
+    vertical-align: top;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+@font-face {
+    font-family: Myriad-pro;
+    src: url(../fonts/MYRIADPRO-REGULAR.ttf);
+}
+
+.wrapper_whirlpool {
+    overflow: hidden;
+    font-family: Myriad-pro;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+/* --------------header---------------- */
+.header_whirlpool {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex: 1 1 auto;
+    min-height: 100vh;
+    background: url(../img/header_banner.jpg) 50% 0 / cover no-repeat;
+}
+.header_whirlpool-block {
+    padding: 25px 15px;
+    margin: 70px 20px;
+    max-width: 1000px;
+    background-color: rgb(255, 255, 255, 0.3);
+}
+.header_whirlpool-title {
+    text-align: center;
+    color: #fff;
+    font-size: 60px;
+    font-weight: 900;
+}
+
+/* ----------section-banner------------- */
+.section-banner {
+    margin: 0 auto;
+    display: flex;
+    padding: 25px 10px;
+}
+.section-banner_column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 10px 25px;
+}
+.column-gray {
+    background-color: #d1d2d4;
+}
+.column-img {
+}
+.column-img img {
+    width: 100%;
+    height: auto;
+}
+.column-buttons {
+    padding: 5px 20px 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.column-buttons-gray {
+    background-color: #d1d2d4;
+}
+.column-buttons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    width: 40%;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 5px;
+    transition: all 0.3s ease 0s;
+}
+.column-buttons .button_register {
+    height: 45px;
+    width: 58%;
+}
+.button_rules {
+    background-color: #353535;
+}
+.button_rules:hover {
+    font-size: 12px;
+    background-color: #000;
+}
+.button_register {
+    text-transform: uppercase;
+    background-color: #edb112;
+}
+.button_register:hover {
+    font-size: 12px;
+    background-color: #a77b04;
+}
+.section-banner_column-blue {
+    border: 1px solid #0092ce;
+}
+.section-banner_column-orange {
+    border: 1px solid #edb112;
+}
+
+/* ----------ot-sdk-row------------- */
+.ot-sdk-bg {
+    background: rgba(0,0,0,0.5);
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.vertical-align-content {
+    z-index: 100;
+    top: 10%;
+    position: fixed;
+    right: 0;
+    background-color: #fff;
+    width: 60%;
+    max-width: 650px;
+    border-radius: 2.5px;
+    left: 1em;
+    margin: 0 auto;
+    font-size: 14px;
+    max-height: 90%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.ot-sdk-row {
+    background-color: #fff;
+    color: #353535;
+    /* max-width: 600px; */
+    padding: 45px 30px;
+}
+.ot-sdk-twelve {
+}
+.ot-sdk-columns {
+}
+.banner-header {
+}
+.onetrust-policy-title {
+}
+.onetrust-close-btn-container {
+}
+.onetrust-policy-text {
+}
+.banner-actions-container {
+}
+.banner-actions-container_cookies {
+}
+.banner-actions-container_preference {
+}
+
+/* ----------@media------------- */
+@media (max-width: 991px) {
+    .section-banner {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+@media (max-width: 600px) {
+    .header_whirlpool-title {
+        font-size: 35px;
+    }
+}
+@media (max-width: 400px) {
+    .column-buttons a {
+        font-size: 12px;
+    }
+}
