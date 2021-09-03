@@ -1,5 +1,6 @@
 // -------------------- select ------------------------
 $(".select").each(function () {
+	const self = this;
 	const _this = $(this),
 		selectOption = _this.find("option"),
 		selectOptionLength = selectOption.length,
@@ -44,6 +45,7 @@ $(".select").each(function () {
 					if (_this.val()) {
 						$(selectHead).addClass("dirty");
 					}
+					// self.dispatchEvent(new Event("change"));
 				});
 			} else {
 				$(this).removeClass("on");
