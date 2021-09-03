@@ -60,14 +60,11 @@
                         <p>Індекс <span>*</span></p>
                         <input tabindex="9" name="index" type="text">
                     </div>
-                    <p>Адреса відділення Укрпошти <span>*</span></p>
-                    <p class="text-info">(на яке робимо відправку подарункового сертифікату)</p>
-                    <select tabindex="10" name="#" class="select" id="#">
-                        <option value="" selected disabled>Оберіть варіанти</option>
-                        <option value="2">Київська</option>
-                        <option value="3">Харківська</option>
-                        <option value="4">Львівська</option>
-                    </select>
+                    <div>
+                        <p>Адреса відділення Укрпошти <span>*</span></p>
+                        <p class="text-info">(на яке робимо відправку подарункового сертифікату)</p>
+                        <input placeholder="Оберіть відділення" tabindex="10" name="emailrepeat" type="text">
+                    </div>
                     <h2>Конфіденційність</h2>
                     <p class="p-radio">Я повністю приймаю повідомлення про порядок поводження з особистою інформацією, а
                         також всі умови
@@ -161,19 +158,24 @@
                         <p>Поле для завантаження фото чеку <span>*</span></p>
                         <div class="input-photo">
                             <input class="hide inputfile" tabindex="21" type="file" id="upload"
-                                data-multiple-caption="{count} files selected"  name="photodownload">
-                            <label for="upload"><span>Завантажити фото</span></label>
-                            <button class="button-send" tabindex="22">Завантажити</button>
+                                data-multiple-caption="{count} files selected" name="photodownload">
+                            <label for="upload">
+                                <span>Завантажити фото</span>
+                                <div class="button-send" tabindex="22">Завантажити</div>
+                            </label>
                         </div>
                     </div>
                     <div>
                         <p>Поле для завантаження фото Реєстраційного номеру облікової картки платника податків
-                            <span>*</span></p>
+                            <span>*</span>
+                        </p>
                         <div class="input-photo">
                             <input class="hide inputfile" tabindex="21" type="file" id="upload2"
-                                data-multiple-caption="{count} files selected"  name="photodownload2">
-                            <label for="upload2"><span>Завантажити фото</span></label>
-                            <button class="button-send" tabindex="22">Завантажити</button>
+                                data-multiple-caption="{count} files selected" name="photodownload2">
+                            <label for="upload2">
+                                <span>Завантажити фото</span>
+                                <div class="button-send" tabindex="22">Завантажити</div>
+                            </label>
                         </div>
                     </div>
                     <p>На зображенні чеку має бути чітко видно дату купівлі, назву та адресу магазину, назву та модель
