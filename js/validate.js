@@ -372,7 +372,8 @@ const validateAgree = () => {
 		mainForm.fiscalCheck.disabled = false;
 		mainForm.shopname.disabled = false;
 		mainForm.photodownload.disabled = false;
-		mainForm.photodownload2.disabled = false;
+		if (mainForm.cost) mainForm.cost.disabled = false;
+		if (mainForm.photodownload2) mainForm.photodownload2.disabled = false;
 	} else {
 		mainForm.instrument.nextElementSibling.classList.add("disabled");
 		mainForm.brand.nextElementSibling.classList.add("disabled");
@@ -383,7 +384,8 @@ const validateAgree = () => {
 		mainForm.fiscalCheck.disabled = true;
 		mainForm.shopname.disabled = true;
 		mainForm.photodownload.disabled = true;
-		mainForm.photodownload2.disabled = true;
+		if (mainForm.photodownload2) mainForm.photodownload2.disabled = true;
+		if (mainForm.cost) mainForm.cost.disabled = true;
 	}
 };
 mainForm["radio-1"].addEventListener("change", validateAgree);
