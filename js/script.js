@@ -72,3 +72,5 @@ Array.prototype.forEach.call(inputs, function (input) {
 		else label.innerHTML = labelVal;
 	});
 });
+
+validateAgree();
