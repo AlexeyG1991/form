@@ -383,3 +383,20 @@ areas = [
 	"Чернігівська область",
 	"м. Київ",
 ];
+filterSilpo = (classname) => {
+	if (classname === "WhirlpoolOption") {
+		document
+			.querySelectorAll(".WhirlpoolOption")
+			.forEach((e) => (e.style.display = "block"));
+		document
+			.querySelectorAll(".HOTPOINTOption")
+			.forEach((e) => (e.style.display = "none"));
+	} else {
+		document
+			.querySelectorAll(".WhirlpoolOption")
+			.forEach((e) => (e.style.display = "none"));
+		document
+			.querySelectorAll(".HOTPOINTOption")
+			.forEach((e) => (e.style.display = "block"));
+	}
+};
