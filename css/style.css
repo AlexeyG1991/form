@@ -454,6 +454,10 @@ input.inputfile:disabled + label {
     border: none;
 }
 
+input.inputfile:disabled + label .button-send {
+    background-color: #acaaa3;
+}
+
 .input-photo label.added-file {
     color: #353535;
 }
