@@ -1,4 +1,4 @@
-const invalid = [];
+let invalid = [];
 const mainForm = document.forms["register_form"];
 
 mainForm.nc12.disabled = true;
@@ -19,6 +19,9 @@ mainForm.emailrepeat.addEventListener("focusout", () => {
 	validateRepeat(mainForm.emailrepeat, mainForm.useremail.value)
 		? mainForm.emailrepeat.classList.add("danger")
 		: mainForm.emailrepeat.classList.remove("danger");
+});
+document.getElementById("successClose").addEventListener("click", () => {
+	document.getElementById("successPopup").style.display = "none";
 });
 
 fillAreas(areas, mainForm.area);
@@ -60,7 +63,7 @@ mainForm["radio-3"].addEventListener("change", validateAgree);
 mainForm["radio-4"].addEventListener("change", validateAgree);
 
 const validate = (form) => {
-	// const invalid = [];
+	invalid = [];
 	if (validateRequired(form.firstname, 2, 40)) invalid.push(form.firstname);
 	if (validateRequired(form.lastname, 2, 40)) invalid.push(form.lastname);
 	if (validatePhone(form.userphone)) invalid.push(form.userphone);
@@ -95,7 +98,11 @@ const validate = (form) => {
 		e.classList.add("danger");
 		if (e.previousElementSibling)
 			e.previousElementSibling.style.display = "block";
+		if ($(e).parent().prev()) {
+			$(e).parent().prev()[0].style.display = "block";
+		}
 	});
+
 	return !invalid.length;
 };
 
@@ -108,9 +115,13 @@ submit.addEventListener("click", (e) => {
 	invalid.forEach((e) => {
 		if (e.previousElementSibling)
 			e.previousElementSibling.style.display = "none";
+		if ($(e).parent().prev()) {
+			$(e).parent().prev()[0].style.display = "none";
+		}
 	});
 	if (validate(mainForm)) {
 		const formData = new FormData(mainForm);
+		document.getElementById("successPopup").style.display = "block";
 
 		$.ajax({
 			url: "/send-mail.php",
