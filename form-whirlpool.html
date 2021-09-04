@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form-whirlpool</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-main.css">
 </head>
 
 <body>
@@ -80,7 +81,8 @@
                     <p class="p-radio">Я повністю приймаю повідомлення про порядок поводження з особистою інформацією, а
                         також всі умови
                         та строки ТОВ "Вірлпул Україна". Для того, щоб ознайомитись з повідомленням про порядок
-                        поводження з особистою інформацією натисніть <a href="#">тут</a></p>
+                        поводження з особистою інформацією натисніть <a href="confidentiality.html"
+                            target="_blank">тут</a></p>
                     <div class="error-text">Незаповнее поле *</div>
                     <div class="form-row">
                         <p>Я згоден(на) <span>*</span></p>
@@ -184,9 +186,7 @@
                     <p>На зображенні чеку має бути чітко видно дату купівлі, назву та адресу магазину, назву та модель
                         виробу, ціну придбання.</p>
                     <p class="text-bold">Звертаємо Вашу увагу, що перевірку справжності чека буде проводитись через сайт
-                        податкової служби
-                        <a
-                            href="https://cabinet.tax.gov.ua/cashregs/check">https://cabinet.tax.gov.ua/cashregs/check</a>
+                        <a href="https://cabinet.tax.gov.ua/cashregs/check" target="_blank">податкової служби</a>.
                     </p>
                     <p class="p-last">Обов'язкові поля <span>*</span></p>
                     <div class="button-end">
@@ -196,6 +196,28 @@
                 </form>
                 <div class="section-register_form-img">
                     <img src="img/form-img.png" alt="img">
+                </div>
+            </div>
+        </div>
+        <div class="ot-sdk-bg" id="cookiesPopup" style="display: none">
+            <div class="vertical-align-content">
+                <div class="ot-sdk-row">
+                    <div class="ot-sdk-twelve ot-sdk-columns">
+                        <div class="banner-header">
+                            <h3 class="onetrust-policy-title">Операція успішна</h3>
+                            <button class="onetrust-close-btn-container" id="closeCookies">
+                                +
+                            </button>
+                        </div>
+                        <p class="onetrust-policy-text">Дякуємо за реєстрацію. Незабаром ви отримаєте лист з подальшими
+                            інструкціями</p>
+                    </div>
+                    <div class="ot-sdk-twelve ot-sdk-columns">
+                        <div class="banner-actions-container">
+                            <a href="index.html" class="banner-actions-container_cookies" id="acceptCookies">Перейти на
+                                головну</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

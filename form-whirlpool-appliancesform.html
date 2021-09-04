@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form-whirlpool-appliancesform</title>
+    <link rel="stylesheet" href="css/style-main.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -80,7 +81,8 @@
                     <p class="p-radio">Я повністю приймаю повідомлення про порядок поводження з особистою інформацією, а
                         також всі умови
                         та строки ТОВ "Вірлпул Україна". Для того, щоб ознайомитись з повідомленням про порядок
-                        поводження з особистою інформацією натисніть <a href="#">тут</a></p>
+                        поводження з особистою інформацією натисніть <a href="confidentiality.html"
+                            target="_blank">тут</a></p>
                     <div class="error-text">Незаповнее поле *</div>
                     <div class="form-row">
                         <p>Я згоден(на) <span>*</span></p>
@@ -183,6 +185,23 @@
                         <option value="whirlpool-store.com.ua">whirlpool-store.com.ua</option>
                     </select>
                     <div>
+                        <p>Поле для завантаження фото Реєстраційного номеру облікової картки платника податків
+                            <span>*</span>
+                        </p>
+                        <div class="error-text">Незаповнее поле *</div>
+                        <div class="input-photo">
+                            <input class="hide inputfile" tabindex="21" type="file" id="upload2"
+                                data-multiple-caption="{count} files selected" name="photodownload2">
+                            <label for="upload2">
+                                <span>Завантажити фото</span>
+                                <div class="button-send" tabindex="22">Завантажити</div>
+                            </label>
+                        </div>
+                        <p class="p-text">Подарунки - оподатковуються. Фото Реєстраційного номеру облікової картки
+                            платника податків є
+                            обов'язковим.</p>
+                    </div>
+                    <div>
                         <p>Поле для завантаження фото чеку <span>*</span></p>
                         <div class="error-text">Незаповнее поле *</div>
                         <div class="input-photo">
@@ -198,27 +217,8 @@
                             модель
                             виробу, ціну придбання.</p>
                     </div>
-                    <div>
-                        <p>Поле для завантаження фото Реєстраційного номеру облікової картки платника податків
-                            <span>*</span>
-                        </p>
-                        <div class="error-text">Незаповнее поле *</div>
-                        <div class="input-photo">
-                            <input class="hide inputfile" tabindex="21" type="file" id="upload2"
-                                data-multiple-caption="{count} files selected" name="photodownload2">
-                            <label for="upload2">
-                                <span>Завантажити фото</span>
-                                <div class="button-send" tabindex="22">Завантажити</div>
-                            </label>
-                        </div>
-                    </div>
-                    <p>Подарунки - оподатковуються. Фото Реєстраційного номеру облікової картки платника податків є
-                        обов'язковим.</p>
-                    <p class="text-bold">Звертаємо Вашу увагу, що перевірку справжності чека буде проводитись через
-                        сайт
-                        податкової служби
-                        <a
-                            href="https://cabinet.tax.gov.ua/cashregs/check">https://cabinet.tax.gov.ua/cashregs/check</a>
+                    <p class="text-bold">Звертаємо Вашу увагу, що перевірку справжності чека буде проводитись через сайт
+                        <a href="https://cabinet.tax.gov.ua/cashregs/check" target="_blank">податкової служби</a>.
                     </p>
                     <p class="p-last">Обов'язкові поля <span>*</span></p>
                     <div class="button-end">
@@ -228,6 +228,28 @@
                 </form>
                 <div class="section-register_form-img">
                     <img src="img/form-img.png" alt="img">
+                </div>
+            </div>
+        </div>
+        <div class="ot-sdk-bg" id="cookiesPopup" style="display: none">
+            <div class="vertical-align-content">
+                <div class="ot-sdk-row">
+                    <div class="ot-sdk-twelve ot-sdk-columns">
+                        <div class="banner-header">
+                            <h3 class="onetrust-policy-title">Операція успішна</h3>
+                            <button class="onetrust-close-btn-container" id="closeCookies">
+                                +
+                            </button>
+                        </div>
+                        <p class="onetrust-policy-text">Дякуємо за реєстрацію. Незабаром ви отримаєте лист з подальшими
+                            інструкціями</p>
+                    </div>
+                    <div class="ot-sdk-twelve ot-sdk-columns">
+                        <div class="banner-actions-container">
+                            <a href="index.html" class="banner-actions-container_cookies" id="acceptCookies">Перейти на
+                                головну</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
