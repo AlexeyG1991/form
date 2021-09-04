@@ -25,54 +25,63 @@
                     <h2>Особиста інформація</h2>
                     <div>
                         <p>Ім'я українською мовою згідно паспорту <span>*</span></p>
+                        <div class="error-text">Незаповнее поле *</div>
                         <input placeholder="Введіть ім'я" tabindex="1" name="firstname" type="text">
                     </div>
                     <div>
                         <p>Прізвище українською мовою згідно паспорту <span>*</span></p>
+                        <div class="error-text">Незаповнее поле *</div>
                         <input placeholder="Введіть прізвище" tabindex="2" name="lastname" type="text">
                     </div>
                     <div>
                         <p>Моб. телефон <span>*</span></p>
+                        <div class="error-text">Незаповнее поле *</div>
                         <input placeholder="0хх-ххх-хх-хх" tabindex="3" name="userphone" type="tel">
                     </div>
                     <div>
                         <p>Підтвердження моб. телефону <span>*</span></p>
+                        <div class="error-text">Незаповнее поле *</div>
                         <input placeholder="0хх-ххх-хх-хх" tabindex="4" name="userphonerepeat" type="tel">
                     </div>
                     <div>
                         <p>Електронна пошта <span>*</span></p>
+                        <div class="error-text">Незаповнее поле *</div>
                         <input placeholder="Введіть адресу" tabindex="5" name="useremail" type="text">
                     </div>
                     <div>
                         <p>Підтвердження електронної пошти <span>*</span></p>
+                        <div class="error-text">Незаповнее поле *</div>
                         <input placeholder="Введіть адресу" tabindex="6" name="emailrepeat" type="text">
                     </div>
                     <h2>Адреса</h2>
                     <p>Область <span>*</span></p>
+                    <div class="error-text">Незаповнее поле *</div>
                     <select tabindex="7" name="area" class="select" id="#">
                         <option value="" selected disabled>Оберіть варіанти</option>
                     </select>
                     <div>
                         <p>Місто/населений пункт <span>*</span></p>
+                        <div class="error-text">Незаповнее поле *</div>
                         <input placeholder="Введіть назву" tabindex="8" name="city" type="text">
                     </div>
                     <div>
                         <p>Індекс <span>*</span></p>
+                        <div class="error-text">Незаповнее поле *</div>
                         <input tabindex="9" name="index" type="text">
                     </div>
-                    <p>Адреса відділення Укрпошти <span>*</span></p>
-                    <p class="text-info">(на яке робимо відправку подарункового сертифікату)</p>
-                    <select tabindex="10" name="#" class="select" id="#">
-                        <option value="" selected disabled>Оберіть варіанти</option>
-                        <option value="2">Київська</option>
-                        <option value="3">Харківська</option>
-                        <option value="4">Львівська</option>
-                    </select>
+                    <div>
+                        <p>Адреса відділення Укрпошти <span>*</span></p>
+                        <p class="text-info">(на яке робимо відправку подарункового сертифікату)</p>
+                        <div class="error-text">Незаповнее поле *</div>
+                        <input placeholder="Оберіть відділення" tabindex="10" name="department" type="text">
+
+                    </div>
                     <h2>Конфіденційність</h2>
                     <p class="p-radio">Я повністю приймаю повідомлення про порядок поводження з особистою інформацією, а
                         також всі умови
                         та строки ТОВ "Вірлпул Україна". Для того, щоб ознайомитись з повідомленням про порядок
                         поводження з особистою інформацією натисніть <a href="#">тут</a></p>
+                    <div class="error-text">Незаповнее поле *</div>
                     <div class="form-row">
                         <p>Я згоден(на) <span>*</span></p>
                         <div class="form_radio">
@@ -90,6 +99,7 @@
                         електронною поштою та через смс-повідомлення про рекламні кампанії, спеціальні акції, події та
                         іншу інформацію, яка описана у повній версії повідомлення про порядок поводження з персональними
                         даними. <span>*</span></p>
+                    <div class="error-text">Незаповнее поле *</div>
                     <div class="form-row">
                         <!-- <p>Я згоден(на) <span>*</span></p> -->
                         <div class="form_radio">
@@ -103,29 +113,32 @@
                     </div>
                     <h2>Інформація про прилад</h2>
                     <p>Прилад <span>*</span></p>
+                    <div class="error-text">Незаповнее поле *</div>
                     <select tabindex="11" name="instrument" class="select" id="#">
                         <option value="" selected disabled>Назва приладу</option>
                         <option value="Пральна машина">Пральна машина</option>
                         <option value="Прально-сушильна машина">Прально-сушильна машина</option>
                     </select>
                     <p>Бренд <span>*</span></p>
+                    <div class="error-text">Незаповнее поле *</div>
                     <select tabindex="12" name="brand" class="select" id="#">
                         <option value="" selected disabled>Оберіть варіанти</option>
-
                         <option value="Whirlpool">Whirlpool</option>
                         <option value="Indesit">Indesit</option>
                     </select>
                     <p>Назва моделі <span>*</span></p>
+                    <div class="error-text">Незаповнее поле *</div>
                     <select tabindex="13" name="modelname" class="select" id="#">
                         <option value="" selected disabled>Оберіть варіанти</option>
-
                     </select>
                     <div>
                         <p>Код 12nc (комерційний код) *</p>
+                        <!-- <div class="error-text">Незаповнее поле *</div> -->
                         <input class="input-gray" placeholder="" tabindex="14" name="nc12" type="text">
                     </div>
                     <div>
                         <p>Серійний номер <span>*</span></p>
+                        <div class="error-text">Незаповнее поле *</div>
                         <div class="input-info">
                             <input placeholder="" tabindex="15" name="serialnumber" type="text">
                             <span class="span-hover">i</span>
@@ -136,18 +149,22 @@
                         </div>
                     </div>
                     <p>Дата придбання <span>*</span></p>
+                    <div class="error-text">Незаповнее поле *</div>
                     <div class="select-data">
                         <input type="date" name="purchasedate" id="purchasedate">
                     </div>
                     <div>
                         <p>Вартість приладу <span>*</span></p>
-                        <input placeholder="" tabindex="19" name="fiscalCheck" type="text">
+                        <div class="error-text">Незаповнее поле *</div>
+                        <input placeholder="" tabindex="19" name="cost" type="text">
                     </div>
                     <div>
                         <p>Номер фіксального чеку <span>*</span></p>
+                        <div class="error-text">Незаповнее поле *</div>
                         <input placeholder="" tabindex="19" name="fiscalCheck" type="text">
                     </div>
                     <p>Назва магазину <span>*</span></p>
+                    <div class="error-text">Незаповнее поле *</div>
                     <select tabindex="20" name="shopname" class="select" id="#">
                         <option value="" selected disabled>Оберіть варіанти</option>
                         <option value="COMFY">COMFY</option>
@@ -159,21 +176,28 @@
                     </select>
                     <div>
                         <p>Поле для завантаження фото чеку <span>*</span></p>
+                        <div class="error-text">Незаповнее поле *</div>
                         <div class="input-photo">
                             <input class="hide inputfile" tabindex="21" type="file" id="upload"
-                                data-multiple-caption="{count} files selected" multiple name="photodownload">
-                            <label for="upload"><span>Завантажити фото</span></label>
-                            <button class="button-send" tabindex="22">Завантажити</button>
+                                data-multiple-caption="{count} files selected" name="photodownload">
+                            <label for="upload">
+                                <span>Завантажити фото</span>
+                                <div class="button-send" tabindex="22">Завантажити</div>
+                            </label>
                         </div>
                     </div>
                     <div>
                         <p>Поле для завантаження фото Реєстраційного номеру облікової картки платника податків
-                            <span>*</span></p>
+                            <span>*</span>
+                        </p>
+                        <div class="error-text">Незаповнее поле *</div>
                         <div class="input-photo">
-                            <input class="hide inputfile" tabindex="21" type="file" id="upload"
-                                data-multiple-caption="{count} files selected" multiple name="photodownload">
-                            <label for="upload"><span>Завантажити фото</span></label>
-                            <button class="button-send" tabindex="22">Завантажити</button>
+                            <input class="hide inputfile" tabindex="21" type="file" id="upload2"
+                                data-multiple-caption="{count} files selected" name="photodownload2">
+                            <label for="upload2">
+                                <span>Завантажити фото</span>
+                                <div class="button-send" tabindex="22">Завантажити</div>
+                            </label>
                         </div>
                     </div>
                     <p>На зображенні чеку має бути чітко видно дату купівлі, назву та адресу магазину, назву та модель

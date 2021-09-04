@@ -55,6 +55,12 @@ h1, h2, h3, h4, h5, h6 {
 .danger ~ .new-select {
 	border-color: red;
 }
+.error-text {
+    color: red;
+    font-size: 14px;
+    max-width: 80%;
+    display: none;
+}
 .wrapper-form {
     overflow: hidden;
     font-family: Myriad-pro;
@@ -166,7 +172,7 @@ input {
     border: 1px solid #edb112;
     color: #edb112;
     border-radius: 50%;
-    z-index: 5;
+    z-index: 2;
     cursor: pointer;
     transition: all 0.3s ease 0s;
 }
@@ -343,6 +349,9 @@ input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s eas
     justify-content: space-between;
     width: 80%;
 }
+.select-data input {
+    cursor: pointer;
+}
 .select-data .select {
     flex: 3;
     margin-right: 10px;
@@ -376,6 +385,7 @@ input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s eas
     width: 100%;
     color: #cbcac9;
     cursor: pointer;
+    position: relative;
 }
 .p-last {
     margin: 40px 0 70px;
@@ -384,6 +394,9 @@ input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s eas
     margin-bottom: 100px;
 }
 .button-send {
+    position: absolute;
+    right: 0;
+    top: 0;
     color: #353535;
     display: flex;
     align-items: center;
@@ -392,15 +405,15 @@ input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s eas
     border-radius: 3px;
     padding: 5px 20px;
     font-size: 20px;
-    margin-bottom: 25px;
-    margin-left: -3px;
     transition: all 0.3s ease 0s;
+    max-width: 160px;
 }
 .button-send:hover {
     background-color: #e2a600;
 }
 .button-send_big {
     padding: 10px 25px;
+    position: relative;
 }
 .hide {
     position: absolute;
@@ -494,19 +507,16 @@ input:disabled,
 }
 @media (max-width: 410px) {
     .button-send {
-        padding: 7px 0px;
-        font-size: 16px;
-        margin-left: 0px;
+        margin: 7px 0 0 -7px;
+        position: relative;
+        max-width: none;
     }
     .button-send_big {
         padding: 10px 25px;
         font-size: 20px;
     }
-    .input-photo {
-        flex-direction: column;
-    }
     .input-photo label {
-        margin-bottom: 5px;
+        padding: 7px 0 0 7px;
     }
     .select-data {
         flex-direction: column;
