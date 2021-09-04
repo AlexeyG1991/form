@@ -242,22 +242,6 @@ h1, h2, h3, h4, h5, h6 {
 .banner-actions-container_cookies:hover {
     background-color: #dfbd61;
 }
-.banner-actions-container_preference {
-    padding: 15px 30px;
-    background-color: #fff;
-    color: #edb112;
-    border-radius: 5px;
-    text-transform: uppercase;
-    border: 1px solid #edb112;
-    width: 230px;
-    transition: all 0.3s ease 0s;
-    margin: 0 25px;
-}
-.banner-actions-container_preference:hover {
-    background-color: #dfbd61;
-    color: #fff;
-    border: 1px solid #dfbd61;
-}
 
 /* ----------footer------------- */
 .footer {
@@ -296,16 +280,6 @@ h1, h2, h3, h4, h5, h6 {
         justify-content: center;
     }
 }
-@media (max-width: 800px) {
-    .banner-actions-container_cookies {
-        padding: 10px;
-        margin: 0 20px 15px 0;
-    }
-    .banner-actions-container_preference {
-        padding: 10px;
-        margin: 0;
-    }
-}
 @media (max-width: 600px) {
     .header_whirlpool-title {
         font-size: 35px;
@@ -315,14 +289,8 @@ h1, h2, h3, h4, h5, h6 {
         max-width: 100%;
         left: 1px;
     }
-    .banner-actions-container {
-        flex-direction: column;
-    }
     .banner-actions-container_cookies {
         margin: 0 0 15px 0;
-    }
-    .banner-actions-container_preference {
-        width: 100%;
     }
 }
 @media (max-width: 400px) {
