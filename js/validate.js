@@ -1,4 +1,4 @@
-const invalid = [];
+let invalid = [];
 const mainForm = document.forms["register_form"];
 
 mainForm.nc12.disabled = true;
@@ -60,7 +60,7 @@ mainForm["radio-3"].addEventListener("change", validateAgree);
 mainForm["radio-4"].addEventListener("change", validateAgree);
 
 const validate = (form) => {
-	// const invalid = [];
+	invalid = [];
 	if (validateRequired(form.firstname, 2, 40)) invalid.push(form.firstname);
 	if (validateRequired(form.lastname, 2, 40)) invalid.push(form.lastname);
 	if (validatePhone(form.userphone)) invalid.push(form.userphone);
@@ -96,6 +96,7 @@ const validate = (form) => {
 		if (e.previousElementSibling)
 			e.previousElementSibling.style.display = "block";
 	});
+
 	return !invalid.length;
 };
 
