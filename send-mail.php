@@ -116,42 +116,48 @@ if (isset($_POST)) {
             <body>
               <h1> Вам подано заявку</h1>
               <p><h2>Інформація замовника</h2></p>
-              <table border=\"1\" cellpadding=\"5\" align=\"left\">
+              <table border=\"1\" cellpadding=\"5\" width=\"700\">
                 <tr>
-                  <th>Ім'я</th><td>" . $name . ' ' . $lastname . "</td>
+                  <td>Ім'я</td><td>" . $name . ' ' . $lastname . "</td>
                 </tr>
                 <tr>
-                  <th>Телефон</th><td>" . $phone . "</td>
+                  <td>Телефон</td><td>" . $phone . "</td>
                 </tr>
                 <tr>
-                   <th>Електронна пошта</th><td>" . $address . "</td>
+                   <td>Електронна пошта</td><td>" . $address . "</td>
                 </tr>
                 <tr>
-                   <th>Адресса</th><td>" . $location . "</td>
+                   <td>Адресса</td><td>" . $location . "</td>
                 </tr>
                  <tr>
-                   <th>Інформація про прилад</th><td>" . $instrument . "</td>
+                   <td>Інформація про прилад</td><td>" . $instrument . "</td>
                 </tr>
                 <tr>
-                   <th>Код 12nc (комерційний код)</th><td>" . $nc12 . "</td>
+                   <td>Код 12nc (комерційний код)</td><td>" . $nc12 . "</td>
                 </tr>
                 <tr>
-                   <th>Серійний номер</th><td>" . $serialnumber . "</td>
+                   <td>Серійний номер</td><td>" . $serialnumber . "</td>
                 </tr>
                 <tr>
-                   <th>Дата придбання</th><td>" . $date . "</td>
+                   <td>Дата придбання</td><td>" . $date . "</td>
                 </tr>
-            <tr>
-                   <th>Номер фіксального чеку</th><td>" . $fiscalCheck . "</td>
+                <tr>
+                   <td>Номер фіксального чеку</td><td>" . $fiscalCheck . "</td>
+                </tr>
+                <tr>
+                   <td>Назва магазину</td><td>" . " " . "</td>
+                </tr>
+                <tr>
+                   <td>Згода отрымуваты повідомлення</td><td>" . " " . "</td>
                 </tr>
               </table>
             </body>
             </html>";
+
+
             if (!empty($_FILES['photodownload'])) {
 
-                if (!empty($_FILES["photodownload"]["name"])) {
-                    
-                    
+                if (!empty($_FILES["photodownload"]["name"])) {                   
                     // File path config
                     $fileName = basename($_FILES["photodownload"]["name"]);
                     $fileNameNoExtension = preg_replace("/\.[^.]+$/", "", $fileName);
@@ -180,23 +186,57 @@ if (isset($_POST)) {
                         $response['message'] = 'Sorry, only PDF, DOC, JPG, JPEG, & PNG files are allowed to upload.';
                     }
                 }
+                if (!empty($_FILES['photodownload2'])) {
+                    if (!empty($_FILES["photodownload2"]["name"])) {                   
+                        // File path config
+                        $fileName2 = basename($_FILES["photodownload2"]["name"]);
+                        $fileNameNoExtension = preg_replace("/\.[^.]+$/", "", $fileName2);
 
-                if ($uploadStatus == 1) {
+                        $targetFilePath = $uploadDir . $fileName2;
 
-                    $fp = fopen($targetFilePath, "r");
+                        $fileType2 = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+                        
+                        $newFileNamePath2 = $uploadDir . $fileNameNoExtension . md5(uniqid(time())) . '.' . $fileType2;
 
-                    if (!$fp) {
-                        print "Файл $uploadedFile не может быть прочитан";
-                        exit();
+                        // Allow certain file formats
+                        $allowTypes = array('pdf', 'doc', 'docx', 'jpg', 'png', 'jpeg');
+
+                        if (in_array($fileType, $allowTypes)) {
+                            // Upload file to the server
+                            if (move_uploaded_file($_FILES["photodownload2"]["tmp_name"], $newFileNamePath2)) {
+                                $uploadedFile2 = $fileName2;
+                                $uploadStatus = 2;
+
+                            } else {
+                                $uploadStatus = 0;
+                                $response['message'] = 'Sorry, there was an error uploading your file.';
+                            }
+                        } else {
+                            $uploadStatus = 0;
+                            $response['message'] = 'Sorry, only PDF, DOC, JPG, JPEG, & PNG files are allowed to upload.';
+                        }
                     }
+                }
 
-                    $file = fread($fp, filesize($targetFilePath));
 
-                    // echo $targetFilePath;
-                    fclose($fp);
 
-                    echo $fileName;
-                    $fileName2 = "some2.jpg";
+                if ($uploadStatus >= 1) {
+
+                    function readFileFn($filePath){
+                        $fp = fopen($filePath, "r");
+                        if (!$fp) {
+                            print "Файл $filePath не может быть прочитан";
+                            exit();
+                        }
+                        $file = fread($fp, filesize($filePath));
+                        fclose($fp);
+                        return $file;
+                    }
+                    $file = readFileFn($newFileNamePath);
+
+                    if($uploadStatus == 2) {
+                        $file2 = readFileFn($newFileNamePath2);
+                    }
 
                     
                     $body = "--$boundary\n";
@@ -207,12 +247,20 @@ if (isset($_POST)) {
                     $body .= $message."\n";
                     $body .= "--$boundary\n";
 
-                    $body .= "Content-Type: application/octet-stream; name==?utf-8?B?".base64_encode('чек.'.$fileType)."?=\n";
-                    $body .= "Content-Transfer-Encoding: base64\n";
-                    $body .= "Content-Disposition: attachment; filename==?utf-8?B?".base64_encode('чек.'.$fileType)."?=\n\n";
-                    $body .= chunk_split(base64_encode($file))."\n";
-                    $body .= "--".$boundary ."--\n";
+                    $body .= "\r\n--$boundary\r\n"; 
+                    $body .= "Content-Type: application/octet-stream; name=\"чек.$fileType\"\r\n";  
+                    $body .= "Content-Transfer-Encoding: base64\r\n"; 
+                    $body .= "Content-Disposition: attachment; filename=\"чек.$fileType\"\r\n";
+                    $body .= "\r\n";
+                    $body .= chunk_split(base64_encode($file));
+                    $body .= "\r\n--$boundary\r\n";
 
+                    $body .= "Content-Type: application/octet-stream; name=\"облікова_картка.$fileType2\"\r\n";  
+                    $body .= "Content-Transfer-Encoding: base64\r\n"; 
+                    $body .= "Content-Disposition: attachment; filename=\"облікова_картка.$fileType2\"\r\n";
+                    $body .= "\r\n";
+                    $body .= chunk_split(base64_encode($file2));
+                    $body .= "\r\n--$boundary\r\n";
 
                     // Insert form data in the database
                     // $insert = $db->query("INSERT INTO sendform (firstname,lastname,userphone,useremail,area,city,index,department,instrument,brand,modelname,nc12,serialnumber,purchasedate,fiscalCheck,shopname,photodownload) VALUES ('" . $name . "','" . $lastname . "','" . $phone . "','" . $address . "','" . $area . "','" . $city . "','" . $index . "','" . $department . "','" . $_POST['instrument'] . "','" . $_POST['brand'] . "','" . $_POST['modelname'] . "','" . $nc12 . "','" . $serialnumber . "','" . $date . "','" . $fiscalCheck . "','" . $shopname . "','" . $uploadedFile . "')");
@@ -231,7 +279,7 @@ if (isset($_POST)) {
             }
 
             if (mail($to, $subject, $body, $headers)) {
-                // echo 'Лист реєстрації відправлено вдало';
+                echo 'Лист реєстрації відправлено вдало';
 
             } else {
                 echo 'Помилка відправки';
