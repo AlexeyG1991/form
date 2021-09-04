@@ -300,8 +300,12 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 @media (max-width: 600px) {
+    .header_whirlpool-block {
+        background-color: rgb(255, 255, 255, 0.5);
+    }
     .header_whirlpool-title {
         font-size: 35px;
+        color: rgb(58, 58, 58);
     }
     .vertical-align-content {
         width: 90%;
