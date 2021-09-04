@@ -1,5 +1,5 @@
 <?php
-include 'config/db.php';
+// include 'config/db.php';
 $uploadDir = 'uploads/';
 $response = array(
     'status' => 0,
@@ -11,13 +11,14 @@ if (isset($_POST)) {
         $model = $_POST['modelname'];
         $serialnumber = $_POST['serialnumber'];
         $fiscalCheck = $_POST['fiscalCheck'];
-        $find = $db->query('SELECT * FROM sendform WHERE modelname LIKE' . $model . ' AND serialnumber LIKE' . $serialnumber . ' AND fiscalCheck LIKE' . $fiscalCheck);
-
+        // $find = $db->query('SELECT * FROM sendform WHERE modelname LIKE' . $model . ' AND serialnumber LIKE' . $serialnumber . ' AND fiscalCheck LIKE' . $fiscalCheck);
+        $find = false;
 
         if ($find) {
             $response['message'] = 'Такі дані вже існують';
         } else {
-            $headers = "Content-type: text/html; charset='utf-8'\n";
+            $bound="filename-".rand(1000,99999);
+            $headers = "Content-Type: multipart/mixed; boundary=\"$bound\"\n";
             $headers .= 'From: webmaster@example.com';
             $headers .= 'Reply-To: webmaster@example.com';
             $headers .= 'X-Mailer: PHP/' . phpversion();
@@ -86,12 +87,13 @@ if (isset($_POST)) {
 
 
 //Content
-            $to = $address;
+            //$to = $address;
+            $to = 'soloveyalexey3@gmail.com';
             $subject = 'Заявка на реэстрацію приладу';
             $message = 'Ваша заявка прийнята ' . "\r\n" . ' ми з вами зв"яжемося';
 
             if (mail($to, $subject, $message, $headers)) {
-                echo 'Лист замовнику відправлено вдало';
+                // echo 'Лист замовнику відправлено вдало';
             } else {
                 echo 'Помилка відправки';
             };
@@ -102,8 +104,8 @@ if (isset($_POST)) {
             $headers .= "Content-Type: multipart/mixed; boundary=\"$boundary\"\n";
 
 
-            $to = $address;
-
+            // $to = $address;
+            $to = 'soloveyalexey3@gmail.com';
             $subject = 'Заявка на реэстрацію приладу';
 
 
@@ -148,20 +150,24 @@ if (isset($_POST)) {
             if (!empty($_FILES['photodownload'])) {
 
                 if (!empty($_FILES["photodownload"]["name"])) {
-
+                    
+                    
                     // File path config
                     $fileName = basename($_FILES["photodownload"]["name"]);
+                    $fileNameNoExtension = preg_replace("/\.[^.]+$/", "", $fileName);
 
                     $targetFilePath = $uploadDir . $fileName;
 
                     $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+                    
+                    $newFileNamePath = $uploadDir . $fileNameNoExtension . md5(uniqid(time())) . '.' . $fileType;
 
                     // Allow certain file formats
                     $allowTypes = array('pdf', 'doc', 'docx', 'jpg', 'png', 'jpeg');
 
                     if (in_array($fileType, $allowTypes)) {
                         // Upload file to the server
-                        if (move_uploaded_file($_FILES["photodownload"]["tmp_name"], $targetFilePath)) {
+                        if (move_uploaded_file($_FILES["photodownload"]["tmp_name"], $newFileNamePath)) {
                             $uploadedFile = $fileName;
                             $uploadStatus = 1;
 
@@ -180,38 +186,38 @@ if (isset($_POST)) {
                     $fp = fopen($targetFilePath, "r");
 
                     if (!$fp) {
-
                         print "Файл $uploadedFile не может быть прочитан";
-
                         exit();
-
                     }
 
                     $file = fread($fp, filesize($targetFilePath));
 
-
+                    // echo $targetFilePath;
                     fclose($fp);
 
+                    echo $fileName;
+                    $fileName2 = "some2.jpg";
+
+                    
                     $body = "--$boundary\n";
                     /* Присоединяем текстовое сообщение */
-                    $body .= "Content-Type: text/html; charset=UTF-8\n";
-                    $body .= "Content-Transfer-Encoding: Quot-Printed\n\n";
-                    $body .= $message . "\n";
-                    $body_part = "--$boundary\n";
-//                    $file = fopen($uploadedFile, "r"); //Открываем файл
-//                    $text = fread($file, filesize($uploadedFile)); //Считываем весь файл
-//                    fclose($file); //Закрываем файл
-                    /* Добавляем тип содержимого, кодируем текст файла и добавляем в тело письма */
-                    $body_part .= "Content-Type: application/octet-stream\n";
-                    $body_part .= "Content-Transfer-Encoding: base64\n";
-                    $body_part .= "Content-Disposition: attachment; filename==?utf-8?B?" . $targetFilePath . "\"\n\n";
-                    $body_part .= chunk_split(base64_encode($file)) . "\n";
-                    $body .= $body_part ."--$boundary--\n";
+                    $body .= "Content-type: text/html; charset='utf-8'\n";
+                    $body .= "Content-Transfer-Encoding: quoted-printablenn";
+                    $body .= "Content-Disposition: attachment; filename==?utf-8?B?".base64_encode('чек.'.$fileType)."?=\n\n";
+                    $body .= $message."\n";
+                    $body .= "--$boundary\n";
+
+                    $body .= "Content-Type: application/octet-stream; name==?utf-8?B?".base64_encode('чек.'.$fileType)."?=\n";
+                    $body .= "Content-Transfer-Encoding: base64\n";
+                    $body .= "Content-Disposition: attachment; filename==?utf-8?B?".base64_encode('чек.'.$fileType)."?=\n\n";
+                    $body .= chunk_split(base64_encode($file))."\n";
+                    $body .= "--".$boundary ."--\n";
+
 
                     // Insert form data in the database
-                    $insert = $db->query("INSERT INTO sendform (firstname,lastname,userphone,useremail,area,city,index,department,instrument,brand,modelname,nc12,serialnumber,purchasedate,fiscalCheck,shopname,photodownload) VALUES ('" . $name . "','" . $lastname . "','" . $phone . "','" . $address . "','" . $area . "','" . $city . "','" . $index . "','" . $department . "','" . $_POST['instrument'] . "','" . $_POST['brand'] . "','" . $_POST['modelname'] . "','" . $nc12 . "','" . $serialnumber . "','" . $date . "','" . $fiscalCheck . "','" . $shopname . "','" . $uploadedFile . "')");
-                    var_dump($insert);
-
+                    // $insert = $db->query("INSERT INTO sendform (firstname,lastname,userphone,useremail,area,city,index,department,instrument,brand,modelname,nc12,serialnumber,purchasedate,fiscalCheck,shopname,photodownload) VALUES ('" . $name . "','" . $lastname . "','" . $phone . "','" . $address . "','" . $area . "','" . $city . "','" . $index . "','" . $department . "','" . $_POST['instrument'] . "','" . $_POST['brand'] . "','" . $_POST['modelname'] . "','" . $nc12 . "','" . $serialnumber . "','" . $date . "','" . $fiscalCheck . "','" . $shopname . "','" . $uploadedFile . "')");
+                    // var_dump($insert);
+                    $insert = false;
                     if ($insert) {
                         $response['status'] = 1;
                         $response['message'] = 'Дані у базу даних додано успішно';
@@ -222,14 +228,10 @@ if (isset($_POST)) {
                 }
 
 
-//                var_dump($fileName);
-//                    die();
-
-
             }
 
             if (mail($to, $subject, $body, $headers)) {
-                echo 'Лист реєстрації відправлено вдало';
+                // echo 'Лист реєстрації відправлено вдало';
 
             } else {
                 echo 'Помилка відправки';
