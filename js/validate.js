@@ -79,6 +79,7 @@ const validate = (form) => {
 	if (validateRequired(form.brand)) invalid.push(form.brand);
 	if (validateRequired(form.modelname, 2, 40)) invalid.push(form.modelname);
 	if (validateRequired(form.nc12, 2, 40)) invalid.push(form.nc12);
+	if (validateRequired(form.department, 2, 40)) invalid.push(form.department);
 	if (validateDate(form.purchasedate)) invalid.push(form.purchasedate);
 	if (validateRequired(form.fiscalCheck, 2, 40)) invalid.push(form.fiscalCheck);
 	if (validateRequired(form.shopname)) invalid.push(form.shopname);
@@ -115,7 +116,7 @@ submit.addEventListener("click", (e) => {
 	invalid.forEach((e) => {
 		if (e.previousElementSibling)
 			e.previousElementSibling.style.display = "none";
-		if ($(e).parent().prev()) {
+		if ($(e).parent().prev().hasClass("error-text")) {
 			$(e).parent().prev()[0].style.display = "none";
 		}
 	});
