@@ -95,6 +95,9 @@ const validate = (form) => {
 		e.classList.add("danger");
 		if (e.previousElementSibling)
 			e.previousElementSibling.style.display = "block";
+		if ($(e).parent().prev()) {
+			$(e).parent().prev()[0].style.display = "block";
+		}
 	});
 
 	return !invalid.length;
@@ -109,6 +112,9 @@ submit.addEventListener("click", (e) => {
 	invalid.forEach((e) => {
 		if (e.previousElementSibling)
 			e.previousElementSibling.style.display = "none";
+		if ($(e).parent().prev()) {
+			$(e).parent().prev()[0].style.display = "none";
+		}
 	});
 	if (validate(mainForm)) {
 		const formData = new FormData(mainForm);
