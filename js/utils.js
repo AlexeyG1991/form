@@ -30,7 +30,7 @@ function getDifferenceInDays(date1, date2) {
 	const diffInMs = date2 - date1;
 	return diffInMs / (1000 * 60 * 60 * 24);
 }
-const fillOptions = (options, target) => {
+const fillAreas = (options, target) => {
 	options.forEach((e) => {
 		const option = document.createElement("option");
 		option.value = e;
@@ -38,3 +38,21 @@ const fillOptions = (options, target) => {
 		target.appendChild(option);
 	});
 };
+const fillModels = (options, target) => {
+	options.forEach((e) => {
+		const option = document.createElement("option");
+		option.value = e.model;
+		option.innerText = e.model;
+		option.classList.add(e.brand + "Option");
+		target.appendChild(option);
+	});
+};
+const findCode = (products, brand, model) => {
+	return (
+		products.find((e) => e.brand === brand && e.model === model)?.nc12 || ""
+	);
+};
+const fillNc12 = (form) => {
+	form.nc12.value = findCode(products, form.brand.value, form.modelname.value);
+};
+let filterSilpo = null;

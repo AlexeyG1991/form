@@ -6,13 +6,16 @@ $('#upload').change((event) => {
 	}
 })
 // -------------------- select ------------------------
+// const meEvent = new Event("myEvent");
 $(".select").each(function () {
 	const self = this;
+	// self.addEventListener("myEvent", console.log);
 	const _this = $(this),
 		selectOption = _this.find("option"),
 		selectOptionLength = selectOption.length,
 		selectedOption = selectOption.filter(":selected"),
-		duration = 350; // длительность анимации
+		duration = 350;
+	// длительность анимации
 	_this.hide();
 	_this.wrap('<div class="select"></div>');
 	$("<div>", {
@@ -32,6 +35,7 @@ $(".select").each(function () {
 			}),
 		})
 			.attr("data-value", selectOption.eq(i).val())
+			.addClass(selectOption.eq(i).attr("class"))
 			.appendTo(selectList);
 	}
 	const selectItem = selectList.find(".new-select__item");
@@ -46,15 +50,13 @@ $(".select").each(function () {
 					let chooseItem = $(this).data("value");
 
 					_this.val(chooseItem).attr("selected", "selected");
+					self.dispatchEvent(new Event("change"));
 					selectHead.text($(this).find("span").text());
 					selectList.slideUp(duration);
 					selectHead.removeClass("on");
 					if (_this.val()) {
 						$(selectHead).addClass("dirty");
 					}
-
-					self.dispatchEvent(new Event("chang"));
-					_this.trigger("chang");
 				});
 			} else {
 				$(this).removeClass("on");
