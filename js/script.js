@@ -1,4 +1,4 @@
-$('#upload').change((event) => {
+$('#upload, #upload2').change((event) => {
 	const downloadEl = event.target;
 	console.log(downloadEl.value);
 	if (downloadEl) {
