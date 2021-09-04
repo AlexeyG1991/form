@@ -309,6 +309,6 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 12px;
     }
     .header_whirlpool {
-        min-height: 85vh;
+        min-height: 65vh;
     }
 }
