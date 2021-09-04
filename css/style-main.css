@@ -215,21 +215,9 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: 1px;
 }
 .onetrust-close-btn-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    padding: 1px 1px 0px 1px;
-    color: #555;
-    background-color: rgb(202, 202, 202);
-    font-size: 26px;
-    transform: rotate(45deg);
-    transition: all 0.3s ease 0s;
 }
 .onetrust-close-btn-container:hover {
-    color: rgb(146, 146, 146);
     background-color: rgb(219, 215, 215);
 }
 .onetrust-policy-text {
@@ -319,5 +307,8 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 400px) {
     .column-buttons a {
         font-size: 12px;
+    }
+    .header_whirlpool {
+        min-height: 85vh;
     }
 }
