@@ -20,6 +20,9 @@ mainForm.emailrepeat.addEventListener("focusout", () => {
 		? mainForm.emailrepeat.classList.add("danger")
 		: mainForm.emailrepeat.classList.remove("danger");
 });
+document.getElementById("successClose").addEventListener("click", () => {
+	document.getElementById("successPopup").style.display = "none";
+});
 
 fillAreas(areas, mainForm.area);
 fillModels(products, mainForm.modelname);
@@ -118,6 +121,7 @@ submit.addEventListener("click", (e) => {
 	});
 	if (validate(mainForm)) {
 		const formData = new FormData(mainForm);
+		document.getElementById("successPopup").style.display = "block";
 
 		$.ajax({
 			url: "/send-mail.php",
