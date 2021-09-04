@@ -45,7 +45,9 @@ $(".select").each(function () {
 					if (_this.val()) {
 						$(selectHead).addClass("dirty");
 					}
-					// self.dispatchEvent(new Event("change"));
+
+					self.dispatchEvent(new Event("chang"));
+					_this.trigger("chang");
 				});
 			} else {
 				$(this).removeClass("on");
