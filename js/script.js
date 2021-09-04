@@ -1,3 +1,10 @@
+$('#upload').change((event) => {
+	const downloadEl = event.target;
+	console.log(downloadEl.value);
+	if (downloadEl) {
+		downloadEl.parentNode.querySelector('label').classList.add('added-file');
+	}
+})
 // -------------------- select ------------------------
 $(".select").each(function () {
 	const self = this;

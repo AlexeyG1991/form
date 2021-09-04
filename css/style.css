@@ -60,6 +60,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 14px;
     max-width: 80%;
     display: none;
+    margin-bottom: 5px;
 }
 .wrapper-form {
     overflow: hidden;
@@ -312,6 +313,8 @@ input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s eas
     border: 1px solid #edb112;
     border-radius: 3px;
     z-index: 5;
+    max-height: 600px;
+    overflow: auto;
 }
 .new-select__list.on {
     display: block;
@@ -435,12 +438,24 @@ input:disabled,
 }
 
 .p-text {
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     margin-top: -15px;
 }
 
 .text-bold {
     font-weight: 700;
+}
+.text-bold a {
+    transition: all 0.3s ease 0s;
+}
+
+input.inputfile:disabled + label {
+    background-color: #f5f5f5;
+    border: none;
+}
+
+.input-photo label.added-file {
+    color: #353535;
 }
 
 @media (max-width: 1315px) {
