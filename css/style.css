@@ -434,6 +434,15 @@ input:disabled,
     color: #353535;
 }
 
+.p-text {
+    margin-bottom: 25px;
+    margin-top: -15px;
+}
+
+.text-bold {
+    font-weight: 700;
+}
+
 @media (max-width: 1315px) {
     .input-info_text {
         margin-right: -318px;
