@@ -211,6 +211,9 @@ input {
 .form_radio input[type=radio] {
 	display: none;
 }
+.form_radio input[type=checkbox] {
+	display: none;
+}
 .form_radio label {
 	display: inline-block;
 	cursor: pointer;
@@ -232,6 +235,14 @@ input {
 }
 /* Checked */
 .form_radio input[type=radio]:checked + label:before {
+    content: "X";
+    color: #edb112;
+    border: 1px solid #edb112;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.form_radio input[type=checkbox]:checked + label:before {
     content: "X";
     color: #edb112;
     border: 1px solid #edb112;
