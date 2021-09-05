@@ -1,10 +1,9 @@
-$('#upload, #upload2').change((event) => {
+$("#upload, #upload2").change((event) => {
 	const downloadEl = event.target;
-	console.log(downloadEl.value);
 	if (downloadEl) {
-		downloadEl.parentNode.querySelector('label').classList.add('added-file');
+		downloadEl.parentNode.querySelector("label").classList.add("added-file");
 	}
-})
+});
 // -------------------- select ------------------------
 // const meEvent = new Event("myEvent");
 $(".select").each(function () {
@@ -73,6 +72,7 @@ Array.prototype.forEach.call(inputs, function (input) {
 		labelVal = label.innerHTML;
 
 	input.addEventListener("change", function (e) {
+		console.log("change");
 		let fileName = "";
 		if (this.files && this.files.length > 1)
 			fileName = (this.getAttribute("data-multiple-caption") || "").replace(
@@ -80,9 +80,13 @@ Array.prototype.forEach.call(inputs, function (input) {
 				this.files.length
 			);
 		else fileName = e.target.value.split("\\").pop();
+		console.log(fileName);
 
 		if (fileName) label.querySelector("span").innerHTML = fileName;
-		else label.innerHTML = labelVal;
+		// else {
+		// 	console.log(labelVal);
+		// 	label.innerHTML = labelVal;
+		// }
 	});
 });
 
