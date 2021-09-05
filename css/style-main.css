@@ -216,6 +216,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 .onetrust-close-btn-container {
     border-radius: 50%;
+    transition: all 0.3s ease 0s;
+    width: 22px;
+    height: 22px;
+}
+.onetrust-close-btn-container img {
+    width: 100%;
+    height: auto;
 }
 .onetrust-close-btn-container:hover {
     background-color: rgb(219, 215, 215);
