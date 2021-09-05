@@ -131,7 +131,7 @@ submit.addEventListener("click", (e) => {
 	if (validate(mainForm)) {
 		const formData = new FormData(mainForm);
 		formData.append("nc12", mainForm.nc12.value);
-		formData.append("agreement", mainForm["radio-3"].checked);
+		formData.append("agreement", mainForm.nc12.value);
 
 		$.ajax({
 			url: "/send-mail.php",
