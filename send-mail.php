@@ -2,7 +2,7 @@
 // include 'config/db.php';
 $uploadDir = 'uploads/';
 $response = array(
-    'status' => 0,
+    'status' => 'error',
     'message' => 'Form submission failed, please try again.'
 );
 
@@ -16,6 +16,7 @@ if (isset($_POST)) {
 
         if ($find) {
             $response['message'] = 'Такі дані вже існують';
+            echo json_encode($response);
         } else {
             $bound="filename-".rand(1000,99999);
             $headers = "Content-Type: multipart/mixed; boundary=\"$bound\"\n";
@@ -84,18 +85,26 @@ if (isset($_POST)) {
             if (!empty($_POST['shopname'])) {
                 $shopname = $_POST['shopname'];
             }
+            if (!empty($_POST['cost'])) {
+                $cost = $_POST['cost'];
+            }
+
 
 
 //Content
             //$to = $address;
             $to = 'soloveyalexey3@gmail.com';
             $subject = 'Заявка на реэстрацію приладу';
-            $message = 'Ваша заявка прийнята ' . "\r\n" . ' ми з вами зв"яжемося';
+//            include "mail.php";
+            $message = '<b>Ваша заявка прийнята</b> ' . "\r\n" . ' ми з вами зв"яжемося';
 
             if (mail($to, $subject, $message, $headers)) {
                 // echo 'Лист замовнику відправлено вдало';
+                $response['status'] = 'success';
+                $response['message'] = 'Дані у базу даних додано успішно';
             } else {
-                echo 'Помилка відправки';
+                $response['message'] = 'Помилка відправки';
+                echo json_encode($response);
             };
 
 
@@ -143,9 +152,15 @@ if (isset($_POST)) {
                 </tr>
                 <tr>
                    <td>Номер фіксального чеку</td><td>" . $fiscalCheck . "</td>
-                </tr>
-                <tr>
-                   <td>Назва магазину</td><td>" . " " . "</td>
+                </tr>";
+
+            if(!empty($cost)) {
+                $message .= "<tr>
+                        <td>Вартість приладу</td><td>" . $cost . "</td>
+                    </tr>";
+            }   
+            $message .=    "<tr>
+                   <td>Назва магазину</td><td>" . $shopname . "</td>
                 </tr>
                 <tr>
                    <td>Згода отрымуваты повідомлення</td><td>" . " " . "</td>
@@ -180,10 +195,12 @@ if (isset($_POST)) {
                         } else {
                             $uploadStatus = 0;
                             $response['message'] = 'Sorry, there was an error uploading your file.';
+                            echo json_encode($response);
                         }
                     } else {
                         $uploadStatus = 0;
                         $response['message'] = 'Sorry, only PDF, DOC, JPG, JPEG, & PNG files are allowed to upload.';
+                        echo json_encode($response);
                     }
                 }
                 if (!empty($_FILES['photodownload2'])) {
@@ -210,10 +227,12 @@ if (isset($_POST)) {
                             } else {
                                 $uploadStatus = 0;
                                 $response['message'] = 'Sorry, there was an error uploading your file.';
+                                echo json_encode($response);
                             }
                         } else {
                             $uploadStatus = 0;
                             $response['message'] = 'Sorry, only PDF, DOC, JPG, JPEG, & PNG files are allowed to upload.';
+                            echo json_encode($response);
                         }
                     }
                 }
@@ -267,7 +286,7 @@ if (isset($_POST)) {
                     // var_dump($insert);
                     $insert = false;
                     if ($insert) {
-                        $response['status'] = 1;
+                        $response['status'] = 'success';
                         $response['message'] = 'Дані у базу даних додано успішно';
                     }
 
@@ -279,10 +298,13 @@ if (isset($_POST)) {
             }
 
             if (mail($to, $subject, $body, $headers)) {
-                echo 'Лист реєстрації відправлено вдало';
+                $response['status'] = 'success';
+                $response['message'] = 'Листи реєстрації та данні кліэнта відправлено вдало';
+                echo json_encode($response);
 
             } else {
-                echo 'Помилка відправки';
+                $response['message'] = 'Помилка відправки';
+                echo json_encode($response);
             }
         }
     }
