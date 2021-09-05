@@ -17,6 +17,7 @@ if (isset($_POST)) {
         if ($find) {
             $response['message'] = 'Такі дані вже існують';
             echo json_encode($response);
+            die();
         } else {
 
             if (!empty($_POST['useremail'])) {
@@ -96,8 +97,7 @@ if (isset($_POST)) {
             //$to = $address;
             $to = 'soloveyalexey3@gmail.com';
             $subject = 'Заявка на реэстрацію приладу';
-//            include "mail.php";
-            $message = '<b>Ваша заявка прийнята</b> ' . "\r\n" . ' ми з вами зв"яжемося';
+            include "mail.php";
 
             if (mail($to, $subject, $message, $headers)) {
                 // echo 'Лист замовнику відправлено вдало';
@@ -106,6 +106,7 @@ if (isset($_POST)) {
             } else {
                 $response['message'] = 'Помилка відправки';
                 echo json_encode($response);
+                die();
             };
 
             $bound="filename-".rand(1000,99999);
@@ -203,11 +204,13 @@ if (isset($_POST)) {
                             $uploadStatus = 0;
                             $response['message'] = 'Sorry, there was an error uploading your file.';
                             echo json_encode($response);
+                            die();
                         }
                     } else {
                         $uploadStatus = 0;
                         $response['message'] = 'Sorry, only PDF, DOC, JPG, JPEG, & PNG files are allowed to upload.';
                         echo json_encode($response);
+                        die();
                     }
                 }
                 if (!empty($_FILES['photodownload2'])) {
@@ -235,11 +238,13 @@ if (isset($_POST)) {
                                 $uploadStatus = 0;
                                 $response['message'] = 'Sorry, there was an error uploading your file.';
                                 echo json_encode($response);
+                                die();
                             }
                         } else {
                             $uploadStatus = 0;
                             $response['message'] = 'Sorry, only PDF, DOC, JPG, JPEG, & PNG files are allowed to upload.';
                             echo json_encode($response);
+                            die();
                         }
                     }
                 }
@@ -312,6 +317,7 @@ if (isset($_POST)) {
             } else {
                 $response['message'] = 'Помилка відправки';
                 echo json_encode($response);
+                die();
             }
         }
     }
