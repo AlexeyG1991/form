@@ -5,10 +5,10 @@ $("#upload, #upload2").change((event) => {
 	}
 });
 // -------------------- select ------------------------
-// const meEvent = new Event("myEvent");
+
 $(".select").each(function () {
 	const self = this;
-	// self.addEventListener("myEvent", console.log);
+
 	const _this = $(this),
 		selectOption = _this.find("option"),
 		selectOptionLength = selectOption.length,
@@ -72,7 +72,6 @@ Array.prototype.forEach.call(inputs, function (input) {
 		labelVal = label.innerHTML;
 
 	input.addEventListener("change", function (e) {
-		console.log("change");
 		let fileName = "";
 		if (this.files && this.files.length > 1)
 			fileName = (this.getAttribute("data-multiple-caption") || "").replace(
@@ -80,13 +79,14 @@ Array.prototype.forEach.call(inputs, function (input) {
 				this.files.length
 			);
 		else fileName = e.target.value.split("\\").pop();
-		console.log(fileName);
 
 		if (fileName) label.querySelector("span").innerHTML = fileName;
-		// else {
-		// 	console.log(labelVal);
-		// 	label.innerHTML = labelVal;
-		// }
+		else {
+			input.classList.remove("added-file");
+
+			input.parentNode.querySelector("label").classList.remove("added-file");
+			label.innerHTML = labelVal;
+		}
 	});
 });
 
