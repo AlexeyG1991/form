@@ -140,10 +140,14 @@ submit.addEventListener("click", (e) => {
 			contentType: false,
 			data: formData,
 			success: function (data) {
-				console.log("ok");
+				// if (data.statusText === "error") {
+				// } else {
+				// 	document.getElementById("successPopup").style.display = "block";
+				// }
 			},
 			error: function (data) {
 				console.log("bad");
+				console.log(data);
 			},
 		});
 	}
