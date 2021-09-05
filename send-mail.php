@@ -18,11 +18,6 @@ if (isset($_POST)) {
             $response['message'] = 'Такі дані вже існують';
             echo json_encode($response);
         } else {
-            $bound="filename-".rand(1000,99999);
-            $headers = "Content-Type: multipart/mixed; boundary=\"$bound\"\n";
-            $headers .= 'From: webmaster@example.com';
-            $headers .= 'Reply-To: webmaster@example.com';
-            $headers .= 'X-Mailer: PHP/' . phpversion();
 
             if (!empty($_POST['useremail'])) {
                 $address = $_POST['useremail'];
@@ -92,6 +87,12 @@ if (isset($_POST)) {
 
 
 //Content
+                        
+            $headers = 'MIME-Version: 1.0' . "\r\n";
+            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+            $headers .= 'From: webmaster@example.com' . "\r\n";
+            $headers .= 'Reply-To: webmaster@example.com' . "\r\n";
+            // $headers .= 'X-Mailer: PHP/' . phpversion();
             //$to = $address;
             $to = 'soloveyalexey3@gmail.com';
             $subject = 'Заявка на реэстрацію приладу';
@@ -106,6 +107,12 @@ if (isset($_POST)) {
                 $response['message'] = 'Помилка відправки';
                 echo json_encode($response);
             };
+
+            $bound="filename-".rand(1000,99999);
+            $headers = "Content-Type: multipart/mixed; boundary=\"$bound\"\n";
+            $headers .= 'From: webmaster@example.com';
+            $headers .= 'Reply-To: webmaster@example.com';
+            $headers .= 'X-Mailer: PHP/' . phpversion();
 
 
             $boundary = "--" . md5(uniqid(time()));
