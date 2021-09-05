@@ -11,14 +11,22 @@ if (filterSilpo)
 		filterSilpo(mainForm.brand.value + "Option");
 	});
 mainForm.userphonerepeat.addEventListener("focusout", () => {
-	validateRepeat(mainForm.userphonerepeat, mainForm.userphone.value)
-		? mainForm.userphonerepeat.classList.add("danger")
-		: mainForm.userphonerepeat.classList.remove("danger");
+	if (validateRepeat(mainForm.userphonerepeat, mainForm.userphone.value)) {
+		mainForm.userphonerepeat.classList.add("danger");
+		mainForm.userphonerepeat.previousElementSibling.style.display = "block";
+	} else {
+		mainForm.userphonerepeat.classList.remove("danger");
+		mainForm.userphonerepeat.previousElementSibling.style.display = "none";
+	}
 });
 mainForm.emailrepeat.addEventListener("focusout", () => {
-	validateRepeat(mainForm.emailrepeat, mainForm.useremail.value)
-		? mainForm.emailrepeat.classList.add("danger")
-		: mainForm.emailrepeat.classList.remove("danger");
+	if (validateRepeat(mainForm.emailrepeat, mainForm.useremail.value)) {
+		mainForm.emailrepeat.classList.add("danger");
+		mainForm.emailrepeat.previousElementSibling.style.display = "block";
+	} else {
+		mainForm.emailrepeat.classList.remove("danger");
+		mainForm.emailrepeat.previousElementSibling.style.display = "none";
+	}
 });
 document.getElementById("successClose").addEventListener("click", () => {
 	document.getElementById("successPopup").style.display = "none";
@@ -132,10 +140,14 @@ submit.addEventListener("click", (e) => {
 			contentType: false,
 			data: formData,
 			success: function (data) {
-				console.log("ok");
+				// if (data.statusText === "error") {
+				// } else {
+				// 	document.getElementById("successPopup").style.display = "block";
+				// }
 			},
 			error: function (data) {
 				console.log("bad");
+				console.log(data);
 			},
 		});
 	}
