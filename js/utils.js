@@ -22,9 +22,13 @@ const validateRepeat = (input, value) => {
 };
 const validateDate = (input) => {
 	if (!input.value) return input;
-	const diff = getDifferenceInDays(new Date(input.value), new Date());
+	const start = new Date("September 6, 2021 00:00:00");
+	//ADD THIS || new Date(input.value) > Date.now()
+	if (start > new Date(input.value)) return input;
+	return false;
 
-	return diff < 14 ? input : false;
+	// const diff = getDifferenceInDays(new Date(input.value), new Date());
+	// return diff < 14 ? input : false;
 };
 function getDifferenceInDays(date1, date2) {
 	const diffInMs = date2 - date1;

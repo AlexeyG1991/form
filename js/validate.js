@@ -130,7 +130,8 @@ submit.addEventListener("click", (e) => {
 	});
 	if (validate(mainForm)) {
 		const formData = new FormData(mainForm);
-		document.getElementById("successPopup").style.display = "block";
+		formData.append("nc12", mainForm.nc12.value);
+		formData.append("agreement", mainForm.nc12.value);
 
 		$.ajax({
 			url: "/send-mail.php",
@@ -140,14 +141,15 @@ submit.addEventListener("click", (e) => {
 			contentType: false,
 			data: formData,
 			success: function (data) {
-				// if (data.statusText === "error") {
-				// } else {
-				// 	document.getElementById("successPopup").style.display = "block";
-				// }
+				const result = JSON.parse(data);
+				if (result.status === "success") {
+					document.getElementById("successPopup").style.display = "block";
+				} else {
+					alert(result.message);
+				}
 			},
 			error: function (data) {
-				console.log("bad");
-				console.log(data);
+				alert("error");
 			},
 		});
 	}

@@ -1,15 +1,14 @@
-$('#upload, #upload2').change((event) => {
+$("#upload, #upload2").change((event) => {
 	const downloadEl = event.target;
-	console.log(downloadEl.value);
 	if (downloadEl) {
-		downloadEl.parentNode.querySelector('label').classList.add('added-file');
+		downloadEl.parentNode.querySelector("label").classList.add("added-file");
 	}
-})
+});
 // -------------------- select ------------------------
-// const meEvent = new Event("myEvent");
+
 $(".select").each(function () {
 	const self = this;
-	// self.addEventListener("myEvent", console.log);
+
 	const _this = $(this),
 		selectOption = _this.find("option"),
 		selectOptionLength = selectOption.length,
@@ -82,7 +81,12 @@ Array.prototype.forEach.call(inputs, function (input) {
 		else fileName = e.target.value.split("\\").pop();
 
 		if (fileName) label.querySelector("span").innerHTML = fileName;
-		else label.innerHTML = labelVal;
+		else {
+			input.classList.remove("added-file");
+
+			input.parentNode.querySelector("label").classList.remove("added-file");
+			label.innerHTML = labelVal;
+		}
 	});
 });
 
