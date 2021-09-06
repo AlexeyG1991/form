@@ -40,6 +40,10 @@ mainForm.instrument.addEventListener("change", () => {
 });
 mainForm.brand.addEventListener("change", () => {
 	validateAndClose(mainForm.brand, 2, 40, validateRequired);
+
+	mainForm.modelname.nextSibling.innerText = "Оберіть варіанти";
+	mainForm.modelname.nextSibling.classList.remove("dirty");
+	mainForm.modelname.value = "";
 });
 mainForm.modelname.addEventListener("change", () => {
 	validateAndClose(mainForm.modelname, 2, 40, validateRequired);
