@@ -149,7 +149,10 @@ submit.addEventListener("click", (e) => {
 				}
 			},
 			error: function (data) {
-				alert("error");
+				alert(
+					"Сталася помилка при перевірці даних. Будь ласка спробуйте ще.\n" +
+						data.message
+				);
 			},
 		});
 	}
