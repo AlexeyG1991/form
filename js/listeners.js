@@ -53,7 +53,7 @@ mainForm.nc12.addEventListener("input", () => {
 	validateAndClose(mainForm.nc12, 2, 40, validateRequired);
 });
 mainForm.serialnumber.addEventListener("input", () => {
-	validateAndClose(mainForm.serialnumber, 2, 40, validateRequired);
+	validateAndClose(mainForm.serialnumber, 12, 12, validateRequired);
 });
 mainForm.purchasedate.addEventListener("input", () => {
 	validateAndClose(mainForm.purchasedate, 2, 40, validateDate);

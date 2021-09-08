@@ -31,6 +31,9 @@ mainForm.emailrepeat.addEventListener("focusout", () => {
 document.getElementById("successClose").addEventListener("click", () => {
 	document.getElementById("successPopup").style.display = "none";
 });
+document.getElementById("errorClose").addEventListener("click", () => {
+	document.getElementById("errorPopup").style.display = "none";
+});
 
 fillAreas(areas, mainForm.area);
 fillModels(products, mainForm.modelname);
@@ -91,7 +94,7 @@ const validate = (form) => {
 	if (validateDate(form.purchasedate)) invalid.push(form.purchasedate);
 	if (validateRequired(form.fiscalCheck, 2, 40)) invalid.push(form.fiscalCheck);
 	if (validateRequired(form.shopname)) invalid.push(form.shopname);
-	if (validateRequired(form.serialnumber, 10, 40))
+	if (validateRequired(form.serialnumber, 12, 12))
 		invalid.push(form.serialnumber);
 	if (validateRequired(form.photodownload, 2, 256))
 		invalid.push(form.photodownload);
@@ -131,7 +134,7 @@ submit.addEventListener("click", (e) => {
 	if (validate(mainForm)) {
 		const formData = new FormData(mainForm);
 		formData.append("nc12", mainForm.nc12.value);
-		formData.append("agreement", mainForm.nc12.value);
+		formData.append("agreement", mainForm["radio-3"].checked);
 
 		$.ajax({
 			url: "/send-mail.php",
@@ -145,14 +148,15 @@ submit.addEventListener("click", (e) => {
 				if (result.status === "success") {
 					document.getElementById("successPopup").style.display = "block";
 				} else {
-					alert(result.message);
+					document.getElementById("errorPopup").style.display = "block";
+					document.getElementById("errorPoputText").innerText = data.message;
 				}
 			},
 			error: function (data) {
-				alert(
-					"Сталася помилка при перевірці даних. Будь ласка спробуйте ще.\n" +
-						data.message
-				);
+				document.getElementById("errorPopup").style.display = "block";
+				document.getElementById("errorPoputText").innerText =
+					data.message ||
+					"Помилка відправки. Будь ласка спробуйте ще. (Зверніть увагу на поле 'я не робот')";
 			},
 		});
 	}
