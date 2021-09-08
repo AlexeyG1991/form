@@ -6,7 +6,17 @@ $response = array(
     'message' => 'Form submission failed, please try again.'
 );
 
+// $response['message'] = 'Помилка відправки';
+// echo json_encode($response);
+
 if (isset($_POST)) {
+    if(empty($_POST['g-recaptcha-response'])) {
+        $response['message'] = 'капча не підтверджена';
+        echo json_encode($response);
+        die();
+    }
+
+
     if (!empty($_POST['modelname']) && !empty($_POST['serialnumber'] && !empty($_POST['fiscalCheck']))) {
         $model = $_POST['modelname'];
         $serialnumber = $_POST['serialnumber'];
@@ -15,6 +25,7 @@ if (isset($_POST)) {
         $find = false;
 
         if ($find) {
+            $response['status'] = 'error';
             $response['message'] = 'Такі дані вже існують';
             echo json_encode($response);
             die();
@@ -104,6 +115,7 @@ if (isset($_POST)) {
                 $response['status'] = 'success';
                 $response['message'] = 'Дані у базу даних додано успішно';
             } else {
+                $response['status'] = 'error';
                 $response['message'] = 'Помилка відправки';
                 echo json_encode($response);
                 die();
@@ -202,12 +214,14 @@ if (isset($_POST)) {
 
                         } else {
                             $uploadStatus = 0;
+                            $response['status'] = 'error';
                             $response['message'] = 'Sorry, there was an error uploading your file.';
                             echo json_encode($response);
                             die();
                         }
                     } else {
                         $uploadStatus = 0;
+                        $response['status'] = 'error';
                         $response['message'] = 'Sorry, only PDF, DOC, JPG, JPEG, & PNG files are allowed to upload.';
                         echo json_encode($response);
                         die();
@@ -242,6 +256,7 @@ if (isset($_POST)) {
                             }
                         } else {
                             $uploadStatus = 0;
+                            $response['status'] = 'error';
                             $response['message'] = 'Sorry, only PDF, DOC, JPG, JPEG, & PNG files are allowed to upload.';
                             echo json_encode($response);
                             die();
@@ -315,6 +330,7 @@ if (isset($_POST)) {
                 echo json_encode($response);
 
             } else {
+                $response['status'] = 'error';
                 $response['message'] = 'Помилка відправки';
                 echo json_encode($response);
                 die();
