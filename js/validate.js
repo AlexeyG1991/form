@@ -149,7 +149,7 @@ submit.addEventListener("click", (e) => {
 					document.getElementById("successPopup").style.display = "block";
 				} else {
 					document.getElementById("errorPopup").style.display = "block";
-					document.getElementById("errorPoputText").innerText = data.message;
+					document.getElementById("errorPoputText").innerText = result.message;
 				}
 			},
 			error: function (data) {
