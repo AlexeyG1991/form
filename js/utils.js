@@ -23,14 +23,12 @@ const validateRepeat = (input, value) => {
 const validateDate = (input) => {
 	if (!input.value) return input;
 	const start = new Date("September 6, 2021 00:00:00");
-	// const diff = getDifferenceInDays(new Date(input.value), new Date());
-	//ADD THIS || new Date(input.value) > Date.now()
-	if (start > new Date(input.value)) return input;
-	// if (diff < 14) return input;
-	return false;
+	const inputDate = new Date(input.value);
+	const diff = getDifferenceInDays(inputDate, new Date());
 
-	// const diff = getDifferenceInDays(new Date(input.value), new Date());
-	// return diff < 14 ? input : false;
+	if (start > inputDate || inputDate > Date.now() || diff < 14) return input;
+
+	return false;
 };
 function getDifferenceInDays(date1, date2) {
 	const diffInMs = date2 - date1;

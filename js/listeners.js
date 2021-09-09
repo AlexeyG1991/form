@@ -3,10 +3,9 @@ const validateAndClose = (input, min, max, func) => {
 		input.classList.remove("danger");
 		if (input.previousElementSibling)
 			input.previousElementSibling.style.display = "none";
-	}
-
-	if ($(input).parent().prev().hasClass("error-text")) {
-		$(input).parent().prev()[0].style.display = "none";
+		if ($(input).parent().prev().hasClass("error-text")) {
+			$(input).parent().prev()[0].style.display = "none";
+		}
 	}
 };
 

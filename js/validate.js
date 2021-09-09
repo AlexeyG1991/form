@@ -132,6 +132,7 @@ submit.addEventListener("click", (e) => {
 		}
 	});
 	if (validate(mainForm)) {
+		document.getElementById("validationError").style.display = "none";
 		const formData = new FormData(mainForm);
 		formData.append("nc12", mainForm.nc12.value);
 		formData.append("agreement", mainForm["radio-3"].checked);
@@ -159,5 +160,7 @@ submit.addEventListener("click", (e) => {
 					"Помилка відправки. Будь ласка спробуйте ще. (Зверніть увагу на поле 'я не робот')";
 			},
 		});
+	} else {
+		document.getElementById("validationError").style.display = "block";
 	}
 });
