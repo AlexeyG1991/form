@@ -99,27 +99,6 @@ if (isset($_POST)) {
 
 
 //Content
-                        
-            $headers = 'MIME-Version: 1.0' . "\r\n";
-            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-            $headers .= 'From: webmaster@example.com' . "\r\n";
-            $headers .= 'Reply-To: webmaster@example.com' . "\r\n";
-            // $headers .= 'X-Mailer: PHP/' . phpversion();
-            //$to = $address;
-            $to = 'soloveyalexey3@gmail.com';
-            $subject = 'Заявка на реэстрацію приладу';
-            include "mail.php";
-
-            if (mail($to, $subject, $message, $headers)) {
-                // echo 'Лист замовнику відправлено вдало';
-                $response['status'] = 'success';
-                $response['message'] = 'Дані у базу даних додано успішно';
-            } else {
-                $response['status'] = 'error';
-                $response['message'] = 'Помилка відправки';
-                echo json_encode($response);
-                die();
-            };
 
             $bound="filename-".rand(1000,99999);
             $headers = "Content-Type: multipart/mixed; boundary=\"$bound\"\n";
@@ -327,14 +306,36 @@ if (isset($_POST)) {
             if (mail($to, $subject, $body, $headers)) {
                 $response['status'] = 'success';
                 $response['message'] = 'Листи реєстрації та данні кліэнта відправлено вдало';
-                echo json_encode($response);
-
             } else {
                 $response['status'] = 'error';
                 $response['message'] = 'Помилка відправки';
                 echo json_encode($response);
                 die();
             }
+
+// user message
+            $headers = 'MIME-Version: 1.0' . "\r\n";
+            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+            $headers .= 'From: webmaster@example.com' . "\r\n";
+            $headers .= 'Reply-To: webmaster@example.com' . "\r\n";
+            $headers .= 'X-Mailer: PHP/' . phpversion();
+            //$to = $address;
+            $to = 'soloveyalexey3@gmail.com';
+            $subject = 'Заявка на реэстрацію приладу';
+            include "mail.php";
+
+            if (mail($to, $subject, $message, $headers)) {
+                // echo 'Лист замовнику відправлено вдало';
+                $response['status'] = 'success';
+                $response['message'] = 'Дані у базу даних додано успішно';
+                echo json_encode($response);
+                die();
+            } else {
+                $response['status'] = 'error';
+                $response['message'] = 'Помилка відправки';
+                echo json_encode($response);
+                die();
+            };
         }
     }
 }
