@@ -1,5 +1,5 @@
-<?php
-// include 'config/db.php';
+﻿<?php
+require_once 'config/db.php';
 $uploadDir = 'uploads/';
 $response = array(
     'status' => 'error',
@@ -21,8 +21,7 @@ if (isset($_POST)) {
         $model = $_POST['modelname'];
         $serialnumber = $_POST['serialnumber'];
         $fiscalCheck = $_POST['fiscalCheck'];
-        // $find = $db->query('SELECT * FROM sendform WHERE modelname LIKE' . $model . ' AND serialnumber LIKE' . $serialnumber . ' AND fiscalCheck LIKE' . $fiscalCheck);
-        $find = false;
+        $find = $db->query('SELECT * FROM sendform WHERE modelname LIKE' . $model . ' AND serialnumber LIKE' . $serialnumber . ' AND fiscalCheck LIKE' . $fiscalCheck);
 
         if ($find) {
             $response['status'] = 'error';
@@ -95,7 +94,6 @@ if (isset($_POST)) {
             if (!empty($_POST['cost'])) {
                 $cost = $_POST['cost'];
             }
-
 
 
 //Content
@@ -288,9 +286,7 @@ if (isset($_POST)) {
                     $body .= "\r\n--$boundary\r\n";
 
                     // Insert form data in the database
-                    // $insert = $db->query("INSERT INTO sendform (firstname,lastname,userphone,useremail,area,city,index,department,instrument,brand,modelname,nc12,serialnumber,purchasedate,fiscalCheck,shopname,photodownload) VALUES ('" . $name . "','" . $lastname . "','" . $phone . "','" . $address . "','" . $area . "','" . $city . "','" . $index . "','" . $department . "','" . $_POST['instrument'] . "','" . $_POST['brand'] . "','" . $_POST['modelname'] . "','" . $nc12 . "','" . $serialnumber . "','" . $date . "','" . $fiscalCheck . "','" . $shopname . "','" . $uploadedFile . "')");
-                    // var_dump($insert);
-                    $insert = false;
+                    $insert = $db->query("INSERT INTO sendform (firstname,lastname,userphone,useremail,area,city,indexcity,department,instrument,brand,modelname,nc12,serialnumber,purchasedate,fiscalCheck,shopname,photodownload) VALUES ('" . $name . "','" . $lastname . "','" . $phone . "','" . $address . "','" . $area . "','" . $city . "','" . $index . "','" . $department . "','" . $_POST['instrument'] . "','" . $_POST['brand'] . "','" . $_POST['modelname'] . "','" . $nc12 . "','" . $serialnumber . "','" . $date . "','" . $fiscalCheck . "','" . $shopname . "','" . $uploadedFile . "')");
                     if ($insert) {
                         $response['status'] = 'success';
                         $response['message'] = 'Дані у базу даних додано успішно';
@@ -299,8 +295,6 @@ if (isset($_POST)) {
                 } else {
                     $body = $message;
                 }
-
-
             }
 
             if (mail($to, $subject, $body, $headers)) {

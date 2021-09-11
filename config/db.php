@@ -1,11 +1,13 @@
 <?php
 //данные для подключенния к базе данных
 $server = "localhost"; //адрес сервера
-$username = "root"; // имя пользователя
-$password = "root"; // пароль
-$dbname = "sendform"; //имя базы данных
+$username = "mywhirl1_user"; // имя пользователя
+$password = "NslmEH]xf5Qg"; // пароль
+$dbname = "mywhirl1_data"; //имя базы данных
 
 $db = new mysqli($server, $username, $password, $dbname);
+
+$db->query("SET NAMES 'utf8'");
 
 // Check connection
 if ($db->connect_error) {
