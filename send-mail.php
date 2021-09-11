@@ -6,9 +6,6 @@ $response = array(
     'message' => 'Form submission failed, please try again.'
 );
 
-// $response['message'] = 'Помилка відправки';
-// echo json_encode($response);
-
 if (isset($_POST)) {
     if(empty($_POST['g-recaptcha-response'])) {
         $response['message'] = 'капча не підтверджена';
@@ -16,14 +13,13 @@ if (isset($_POST)) {
         die();
     }
 
-
     if (!empty($_POST['modelname']) && !empty($_POST['serialnumber'] && !empty($_POST['fiscalCheck']))) {
         $model = $_POST['modelname'];
         $serialnumber = $_POST['serialnumber'];
         $fiscalCheck = $_POST['fiscalCheck'];
-        $find = $db->query('SELECT * FROM sendform WHERE modelname LIKE' . $model . ' AND serialnumber LIKE' . $serialnumber . ' AND fiscalCheck LIKE' . $fiscalCheck);
+        $find = $db->query('SELECT * FROM sendform WHERE modelname LIKE "' . $model . '" AND serialnumber LIKE ' . $serialnumber . ' AND fiscalCheck LIKE ' . $fiscalCheck);
 
-        if ($find) {
+        if ($find->num_rows) {
             $response['status'] = 'error';
             $response['message'] = 'Такі дані вже існують';
             echo json_encode($response);
