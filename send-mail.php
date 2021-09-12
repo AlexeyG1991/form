@@ -1,5 +1,5 @@
-<?php
-// include 'config/db.php';
+﻿<?php
+require_once 'config/db.php';
 $uploadDir = 'uploads/';
 $response = array(
     'status' => 'error',
@@ -7,14 +7,20 @@ $response = array(
 );
 
 if (isset($_POST)) {
+    if(empty($_POST['g-recaptcha-response'])) {
+        $response['message'] = 'капча не підтверджена';
+        echo json_encode($response);
+        die();
+    }
+
     if (!empty($_POST['modelname']) && !empty($_POST['serialnumber'] && !empty($_POST['fiscalCheck']))) {
         $model = $_POST['modelname'];
         $serialnumber = $_POST['serialnumber'];
         $fiscalCheck = $_POST['fiscalCheck'];
-        // $find = $db->query('SELECT * FROM sendform WHERE modelname LIKE' . $model . ' AND serialnumber LIKE' . $serialnumber . ' AND fiscalCheck LIKE' . $fiscalCheck);
-        $find = false;
+        $find = $db->query('SELECT * FROM sendform WHERE modelname LIKE "' . $model . '" AND serialnumber LIKE ' . $serialnumber . ' AND fiscalCheck LIKE ' . $fiscalCheck);
 
-        if ($find) {
+        if ($find->num_rows) {
+            $response['status'] = 'error';
             $response['message'] = 'Такі дані вже існують';
             echo json_encode($response);
             die();
@@ -86,28 +92,7 @@ if (isset($_POST)) {
             }
 
 
-
 //Content
-                        
-            $headers = 'MIME-Version: 1.0' . "\r\n";
-            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-            $headers .= 'From: webmaster@example.com' . "\r\n";
-            $headers .= 'Reply-To: webmaster@example.com' . "\r\n";
-            // $headers .= 'X-Mailer: PHP/' . phpversion();
-            //$to = $address;
-            $to = 'soloveyalexey3@gmail.com';
-            $subject = 'Заявка на реэстрацію приладу';
-            include "mail.php";
-
-            if (mail($to, $subject, $message, $headers)) {
-                // echo 'Лист замовнику відправлено вдало';
-                $response['status'] = 'success';
-                $response['message'] = 'Дані у базу даних додано успішно';
-            } else {
-                $response['message'] = 'Помилка відправки';
-                echo json_encode($response);
-                die();
-            };
 
             $bound="filename-".rand(1000,99999);
             $headers = "Content-Type: multipart/mixed; boundary=\"$bound\"\n";
@@ -202,12 +187,14 @@ if (isset($_POST)) {
 
                         } else {
                             $uploadStatus = 0;
+                            $response['status'] = 'error';
                             $response['message'] = 'Sorry, there was an error uploading your file.';
                             echo json_encode($response);
                             die();
                         }
                     } else {
                         $uploadStatus = 0;
+                        $response['status'] = 'error';
                         $response['message'] = 'Sorry, only PDF, DOC, JPG, JPEG, & PNG files are allowed to upload.';
                         echo json_encode($response);
                         die();
@@ -242,6 +229,7 @@ if (isset($_POST)) {
                             }
                         } else {
                             $uploadStatus = 0;
+                            $response['status'] = 'error';
                             $response['message'] = 'Sorry, only PDF, DOC, JPG, JPEG, & PNG files are allowed to upload.';
                             echo json_encode($response);
                             die();
@@ -294,9 +282,7 @@ if (isset($_POST)) {
                     $body .= "\r\n--$boundary\r\n";
 
                     // Insert form data in the database
-                    // $insert = $db->query("INSERT INTO sendform (firstname,lastname,userphone,useremail,area,city,index,department,instrument,brand,modelname,nc12,serialnumber,purchasedate,fiscalCheck,shopname,photodownload) VALUES ('" . $name . "','" . $lastname . "','" . $phone . "','" . $address . "','" . $area . "','" . $city . "','" . $index . "','" . $department . "','" . $_POST['instrument'] . "','" . $_POST['brand'] . "','" . $_POST['modelname'] . "','" . $nc12 . "','" . $serialnumber . "','" . $date . "','" . $fiscalCheck . "','" . $shopname . "','" . $uploadedFile . "')");
-                    // var_dump($insert);
-                    $insert = false;
+                    $insert = $db->query("INSERT INTO sendform (firstname,lastname,userphone,useremail,area,city,indexcity,department,instrument,brand,modelname,nc12,serialnumber,purchasedate,fiscalCheck,shopname,photodownload) VALUES ('" . $name . "','" . $lastname . "','" . $phone . "','" . $address . "','" . $area . "','" . $city . "','" . $index . "','" . $department . "','" . $_POST['instrument'] . "','" . $_POST['brand'] . "','" . $_POST['modelname'] . "','" . $nc12 . "','" . $serialnumber . "','" . $date . "','" . $fiscalCheck . "','" . $shopname . "','" . $uploadedFile . "')");
                     if ($insert) {
                         $response['status'] = 'success';
                         $response['message'] = 'Дані у базу даних додано успішно';
@@ -305,20 +291,41 @@ if (isset($_POST)) {
                 } else {
                     $body = $message;
                 }
-
-
             }
 
             if (mail($to, $subject, $body, $headers)) {
                 $response['status'] = 'success';
                 $response['message'] = 'Листи реєстрації та данні кліэнта відправлено вдало';
-                echo json_encode($response);
-
             } else {
+                $response['status'] = 'error';
                 $response['message'] = 'Помилка відправки';
                 echo json_encode($response);
                 die();
             }
+
+// user message
+            $headers = 'MIME-Version: 1.0' . "\r\n";
+            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+            $headers .= 'From: webmaster@example.com' . "\r\n";
+            $headers .= 'Reply-To: webmaster@example.com' . "\r\n";
+            $headers .= 'X-Mailer: PHP/' . phpversion();
+            //$to = $address;
+            $to = 'soloveyalexey3@gmail.com';
+            $subject = 'Заявка на реэстрацію приладу';
+            include "mail.php";
+
+            if (mail($to, $subject, $message, $headers)) {
+                // echo 'Лист замовнику відправлено вдало';
+                $response['status'] = 'success';
+                $response['message'] = 'Дані у базу даних додано успішно';
+                echo json_encode($response);
+                die();
+            } else {
+                $response['status'] = 'error';
+                $response['message'] = 'Помилка відправки';
+                echo json_encode($response);
+                die();
+            };
         }
     }
 }
