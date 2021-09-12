@@ -75,8 +75,8 @@ mainForm["radio-4"].addEventListener("change", validateAgree);
 
 const validate = (form) => {
 	invalid = [];
-	if (validateRequired(form.firstname, 2, 40)) invalid.push(form.firstname);
-	if (validateRequired(form.lastname, 2, 40)) invalid.push(form.lastname);
+	if (validateRequired(form.firstname, 1, 40)) invalid.push(form.firstname);
+	if (validateRequired(form.lastname, 1, 40)) invalid.push(form.lastname);
 	if (validatePhone(form.userphone)) invalid.push(form.userphone);
 	if (validateRepeat(form.userphonerepeat, form.userphone.value))
 		invalid.push(form.userphonerepeat);
@@ -84,26 +84,26 @@ const validate = (form) => {
 	if (validateRepeat(form.emailrepeat, form.useremail.value))
 		invalid.push(form.emailrepeat);
 	if (validateRequired(form.area)) invalid.push(form.area);
-	if (validateRequired(form.city, 2, 40)) invalid.push(form.city);
-	if (validateRequired(form.index, 2, 40)) invalid.push(form.index);
+	if (validateRequired(form.city, 1, 40)) invalid.push(form.city);
+	if (validateRequired(form.index, 1, 40)) invalid.push(form.index);
 	if (validateRequired(form.instrument)) invalid.push(form.instrument);
 	if (validateRequired(form.brand)) invalid.push(form.brand);
-	if (validateRequired(form.modelname, 2, 40)) invalid.push(form.modelname);
-	if (validateRequired(form.nc12, 2, 40)) invalid.push(form.nc12);
-	if (validateRequired(form.department, 2, 40)) invalid.push(form.department);
+	if (validateRequired(form.modelname, 1, 40)) invalid.push(form.modelname);
+	if (validateRequired(form.nc12, 1, 40)) invalid.push(form.nc12);
+	if (validateRequired(form.department, 1, 40)) invalid.push(form.department);
 	if (validateDate(form.purchasedate)) invalid.push(form.purchasedate);
-	if (validateRequired(form.fiscalCheck, 2, 40)) invalid.push(form.fiscalCheck);
+	if (validateRequired(form.fiscalCheck, 1, 40)) invalid.push(form.fiscalCheck);
 	if (validateRequired(form.shopname)) invalid.push(form.shopname);
 	if (validateRequired(form.serialnumber, 12, 12))
 		invalid.push(form.serialnumber);
-	if (validateRequired(form.photodownload, 2, 256))
+	if (validateRequired(form.photodownload, 1, 256))
 		invalid.push(form.photodownload);
 
 	if (mainForm.cost) {
 		if (validateRequired(form.cost, 1, 20)) invalid.push(form.cost);
 	}
 	if (mainForm.photodownload2) {
-		if (validateRequired(form.photodownload2, 2, 256))
+		if (validateRequired(form.photodownload2, 1, 256))
 			invalid.push(form.photodownload2);
 	}
 	invalid.forEach((e) => {
@@ -132,6 +132,7 @@ submit.addEventListener("click", (e) => {
 		}
 	});
 	if (validate(mainForm)) {
+		document.getElementById("validationError").style.display = "none";
 		const formData = new FormData(mainForm);
 		formData.append("nc12", mainForm.nc12.value);
 		formData.append("agreement", mainForm["radio-3"].checked);
@@ -149,7 +150,7 @@ submit.addEventListener("click", (e) => {
 					document.getElementById("successPopup").style.display = "block";
 				} else {
 					document.getElementById("errorPopup").style.display = "block";
-					document.getElementById("errorPoputText").innerText = data.message;
+					document.getElementById("errorPoputText").innerText = result.message;
 				}
 			},
 			error: function (data) {
@@ -159,5 +160,7 @@ submit.addEventListener("click", (e) => {
 					"Помилка відправки. Будь ласка спробуйте ще. (Зверніть увагу на поле 'я не робот')";
 			},
 		});
+	} else {
+		document.getElementById("validationError").style.display = "block";
 	}
 });
