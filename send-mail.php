@@ -21,7 +21,7 @@ if (isset($_POST)) {
 
         if ($find->num_rows) {
             $response['status'] = 'error';
-            $response['message'] = 'Такі дані вже існують';
+            $response['message'] = 'Вибачте, обрана модель у даному фіскальному чеку вже була зареєстрована';
             echo json_encode($response);
             die();
         } else {
@@ -89,6 +89,8 @@ if (isset($_POST)) {
             }
             if (!empty($_POST['cost'])) {
                 $cost = $_POST['cost'];
+            }else{
+                $cost = "";
             }
 
 
@@ -188,14 +190,14 @@ if (isset($_POST)) {
                         } else {
                             $uploadStatus = 0;
                             $response['status'] = 'error';
-                            $response['message'] = 'Sorry, there was an error uploading your file.';
+                            $response['message'] = 'На жаль, під час завантаження вашого файлу сталася помилка.';
                             echo json_encode($response);
                             die();
                         }
                     } else {
                         $uploadStatus = 0;
                         $response['status'] = 'error';
-                        $response['message'] = 'Sorry, only PDF, DOC, JPG, JPEG, & PNG files are allowed to upload.';
+                        $response['message'] = 'Вибачте, тільки PDF, DOC, JPG, JPEG, та PNG файли дозволено завантажувати.';
                         echo json_encode($response);
                         die();
                     }
@@ -223,14 +225,14 @@ if (isset($_POST)) {
 
                             } else {
                                 $uploadStatus = 0;
-                                $response['message'] = 'Sorry, there was an error uploading your file.';
+                                $response['message'] = 'На жаль, під час завантаження вашого файлу сталася помилка.';
                                 echo json_encode($response);
                                 die();
                             }
                         } else {
                             $uploadStatus = 0;
                             $response['status'] = 'error';
-                            $response['message'] = 'Sorry, only PDF, DOC, JPG, JPEG, & PNG files are allowed to upload.';
+                            $response['message'] = 'Вибачте, тільки PDF, DOC, JPG, JPEG, та PNG файли дозволено завантажувати.';
                             echo json_encode($response);
                             die();
                         }
@@ -244,8 +246,10 @@ if (isset($_POST)) {
                     function readFileFn($filePath){
                         $fp = fopen($filePath, "r");
                         if (!$fp) {
-                            print "Файл $filePath не может быть прочитан";
-                            exit();
+                            $response['status'] = 'error';
+                            $response['message'] = "Файл $filePath не может бути прочитаним";
+                            echo json_encode($response);
+                            die();
                         }
                         $file = fread($fp, filesize($filePath));
                         fclose($fp);
@@ -282,7 +286,7 @@ if (isset($_POST)) {
                     $body .= "\r\n--$boundary\r\n";
 
                     // Insert form data in the database
-                    $insert = $db->query("INSERT INTO sendform (firstname,lastname,userphone,useremail,area,city,indexcity,department,instrument,brand,modelname,nc12,serialnumber,purchasedate,fiscalCheck,shopname,photodownload) VALUES ('" . $name . "','" . $lastname . "','" . $phone . "','" . $address . "','" . $area . "','" . $city . "','" . $index . "','" . $department . "','" . $_POST['instrument'] . "','" . $_POST['brand'] . "','" . $_POST['modelname'] . "','" . $nc12 . "','" . $serialnumber . "','" . $date . "','" . $fiscalCheck . "','" . $shopname . "','" . $uploadedFile . "')");
+                    $insert = $db->query("INSERT INTO sendform (firstname,lastname,userphone,useremail,area,city,indexcity,department,instrument,brand,modelname,nc12,serialnumber,purchasedate,fiscalCheck,shopname,photodownload, cost, photo2download) VALUES ('" . $name . "','" . $lastname . "','" . $phone . "','" . $address . "','" . $area . "','" . $city . "','" . $index . "','" . $department . "','" . $_POST['instrument'] . "','" . $_POST['brand'] . "','" . $_POST['modelname'] . "','" . $nc12 . "','" . $serialnumber . "','" . $date . "','" . $fiscalCheck . "','" . $shopname . "','" . $newFileNamePath . "','" . $cost . "','" . $newFileNamePath2 . "')");
                     if ($insert) {
                         $response['status'] = 'success';
                         $response['message'] = 'Дані у базу даних додано успішно';

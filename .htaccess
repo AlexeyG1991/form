@@ -14,3 +14,9 @@ RewriteRule . /index.php [L]
 </IfModule>
 
 # END WordPress
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-SSL} !on
+RewriteCond %{HTTP_HOST} ^mywhirlpool\.com\.ua$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.mywhirlpool\.com\.ua$
+RewriteRule ^/?$ "https\:\/\/mywhirlpool\.com\.ua\/" [R=301,L]
+
