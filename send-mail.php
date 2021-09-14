@@ -17,9 +17,13 @@ if (isset($_POST)) {
         $model = $_POST['modelname'];
         $serialnumber = $_POST['serialnumber'];
         $fiscalCheck = $_POST['fiscalCheck'];
-        $find = $db->query('SELECT * FROM sendform WHERE modelname LIKE "' . $model . '" AND serialnumber LIKE ' . $serialnumber . ' AND fiscalCheck LIKE ' . $fiscalCheck);
+        // $find = $db->query('SELECT * FROM sendform WHERE modelname LIKE "' . $model . '" AND serialnumber LIKE \'' . $serialnumber . '\' AND fiscalCheck LIKE \'' . $fiscalCheck . '\'' );
+        $find = mysqli_query($db, 'SELECT * FROM sendform WHERE modelname LIKE \'' . $model . '\' AND serialnumber LIKE \'' . $serialnumber . '\' AND fiscalCheck LIKE \'' . $fiscalCheck . '\'');
+        while($row = mysqli_fetch_assoc($find))
+            $result[] = $row; 
+        // print json_encode($result);
 
-        if ($find->num_rows) {
+        if ($result) {
             $response['status'] = 'error';
             $response['message'] = 'Вибачте, обрана модель у даному фіскальному чеку вже була зареєстрована';
             echo json_encode($response);
