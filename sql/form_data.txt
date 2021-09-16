@@ -17,6 +17,7 @@ CREATE TABLE `sendform` (
  `purchasedate` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
  `fiscalCheck` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
  `shopname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+ `cost` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
  `photodownload` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
  `photo2download` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
  `submitted_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,

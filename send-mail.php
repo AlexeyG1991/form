@@ -1,6 +1,8 @@
 ﻿<?php
 require_once 'config/db.php';
 $uploadDir = 'uploads/';
+$mail_to = 'info@amdigital.agency';
+// $mail_to = 'soloveyalexey3@gmail.com';
 $response = array(
     'status' => 'error',
     'message' => 'Form submission failed, please try again.'
@@ -17,11 +19,15 @@ if (isset($_POST)) {
         $model = $_POST['modelname'];
         $serialnumber = $_POST['serialnumber'];
         $fiscalCheck = $_POST['fiscalCheck'];
-        $find = $db->query('SELECT * FROM sendform WHERE modelname LIKE "' . $model . '" AND serialnumber LIKE ' . $serialnumber . ' AND fiscalCheck LIKE ' . $fiscalCheck);
+        // $find = $db->query('SELECT * FROM sendform WHERE modelname LIKE "' . $model . '" AND serialnumber LIKE \'' . $serialnumber . '\' AND fiscalCheck LIKE \'' . $fiscalCheck . '\'' );
+        $find = mysqli_query($db, 'SELECT * FROM sendform WHERE modelname LIKE \'' . $model . '\' AND serialnumber LIKE \'' . $serialnumber . '\' AND fiscalCheck LIKE \'' . $fiscalCheck . '\'');
+        while($row = mysqli_fetch_assoc($find))
+            $result[] = $row; 
+        // print json_encode($result);
 
-        if ($find->num_rows) {
+        if ($result) {
             $response['status'] = 'error';
-            $response['message'] = 'Такі дані вже існують';
+            $response['message'] = 'Вибачте, обрана модель у даному фіскальному чеку вже була зареєстрована';
             echo json_encode($response);
             die();
         } else {
@@ -89,6 +95,8 @@ if (isset($_POST)) {
             }
             if (!empty($_POST['cost'])) {
                 $cost = $_POST['cost'];
+            }else{
+                $cost = "";
             }
 
 
@@ -106,8 +114,7 @@ if (isset($_POST)) {
             $headers .= "Content-Type: multipart/mixed; boundary=\"$boundary\"\n";
 
 
-            // $to = $address;
-            $to = 'soloveyalexey3@gmail.com';
+            $to = $mail_to;
             $subject = 'Заявка на реэстрацію приладу';
 
 
@@ -165,7 +172,14 @@ if (isset($_POST)) {
 
             if (!empty($_FILES['photodownload'])) {
 
-                if (!empty($_FILES["photodownload"]["name"])) {                   
+                if (!empty($_FILES["photodownload"]["name"])) {  
+                    
+                    if($_FILES["photodownload"]["size"] > 10 * 1024 * 1024) {
+                        $response['status'] = 'error';
+                        $response['message'] = 'Перевірте файл чеку, розмір вашого файлу повинен буты менше 10 MB';
+                        echo json_encode($response);
+                        die();
+                    }
                     // File path config
                     $fileName = basename($_FILES["photodownload"]["name"]);
                     $fileNameNoExtension = preg_replace("/\.[^.]+$/", "", $fileName);
@@ -174,7 +188,7 @@ if (isset($_POST)) {
 
                     $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
                     
-                    $newFileNamePath = $uploadDir . $fileNameNoExtension . md5(uniqid(time())) . '.' . $fileType;
+                    $newFileNamePath = $uploadDir . $fileNameNoExtension . "_" . md5(uniqid(time())) . '.' . $fileType;
 
                     // Allow certain file formats
                     $allowTypes = array('pdf', 'doc', 'docx', 'jpg', 'png', 'jpeg');
@@ -188,20 +202,26 @@ if (isset($_POST)) {
                         } else {
                             $uploadStatus = 0;
                             $response['status'] = 'error';
-                            $response['message'] = 'Sorry, there was an error uploading your file.';
+                            $response['message'] = 'На жаль, під час завантаження вашого файлу сталася помилка.';
                             echo json_encode($response);
                             die();
                         }
                     } else {
                         $uploadStatus = 0;
                         $response['status'] = 'error';
-                        $response['message'] = 'Sorry, only PDF, DOC, JPG, JPEG, & PNG files are allowed to upload.';
+                        $response['message'] = 'Вибачте, тільки PDF, DOC, JPG, JPEG, та PNG файли дозволено завантажувати.';
                         echo json_encode($response);
                         die();
                     }
                 }
                 if (!empty($_FILES['photodownload2'])) {
-                    if (!empty($_FILES["photodownload2"]["name"])) {                   
+                    if (!empty($_FILES["photodownload2"]["name"])) {
+                        if($_FILES["photodownload2"]["size"] > 10 * 1024 * 1024) {
+                            $response['status'] = 'error';
+                            $response['message'] = 'Перевірте файл облікової картки, розмір вашого файлу повинен буты менше 10 MB';
+                            echo json_encode($response);
+                            die();
+                        }             
                         // File path config
                         $fileName2 = basename($_FILES["photodownload2"]["name"]);
                         $fileNameNoExtension = preg_replace("/\.[^.]+$/", "", $fileName2);
@@ -210,7 +230,7 @@ if (isset($_POST)) {
 
                         $fileType2 = pathinfo($targetFilePath, PATHINFO_EXTENSION);
                         
-                        $newFileNamePath2 = $uploadDir . $fileNameNoExtension . md5(uniqid(time())) . '.' . $fileType2;
+                        $newFileNamePath2 = $uploadDir . $fileNameNoExtension . "_" . md5(uniqid(time())) . '.' . $fileType2;
 
                         // Allow certain file formats
                         $allowTypes = array('pdf', 'doc', 'docx', 'jpg', 'png', 'jpeg');
@@ -223,14 +243,14 @@ if (isset($_POST)) {
 
                             } else {
                                 $uploadStatus = 0;
-                                $response['message'] = 'Sorry, there was an error uploading your file.';
+                                $response['message'] = 'На жаль, під час завантаження вашого файлу сталася помилка.';
                                 echo json_encode($response);
                                 die();
                             }
                         } else {
                             $uploadStatus = 0;
                             $response['status'] = 'error';
-                            $response['message'] = 'Sorry, only PDF, DOC, JPG, JPEG, & PNG files are allowed to upload.';
+                            $response['message'] = 'Вибачте, тільки PDF, DOC, JPG, JPEG, та PNG файли дозволено завантажувати.';
                             echo json_encode($response);
                             die();
                         }
@@ -244,8 +264,10 @@ if (isset($_POST)) {
                     function readFileFn($filePath){
                         $fp = fopen($filePath, "r");
                         if (!$fp) {
-                            print "Файл $filePath не может быть прочитан";
-                            exit();
+                            $response['status'] = 'error';
+                            $response['message'] = "Файл $filePath не может бути прочитаним";
+                            echo json_encode($response);
+                            die();
                         }
                         $file = fread($fp, filesize($filePath));
                         fclose($fp);
@@ -282,7 +304,7 @@ if (isset($_POST)) {
                     $body .= "\r\n--$boundary\r\n";
 
                     // Insert form data in the database
-                    $insert = $db->query("INSERT INTO sendform (firstname,lastname,userphone,useremail,area,city,indexcity,department,instrument,brand,modelname,nc12,serialnumber,purchasedate,fiscalCheck,shopname,photodownload) VALUES ('" . $name . "','" . $lastname . "','" . $phone . "','" . $address . "','" . $area . "','" . $city . "','" . $index . "','" . $department . "','" . $_POST['instrument'] . "','" . $_POST['brand'] . "','" . $_POST['modelname'] . "','" . $nc12 . "','" . $serialnumber . "','" . $date . "','" . $fiscalCheck . "','" . $shopname . "','" . $uploadedFile . "')");
+                    $insert = $db->query("INSERT INTO sendform (firstname,lastname,userphone,useremail,area,city,indexcity,department,instrument,brand,modelname,nc12,serialnumber,purchasedate,fiscalCheck,shopname,photodownload, cost, photo2download) VALUES ('" . $name . "','" . $lastname . "','" . $phone . "','" . $address . "','" . $area . "','" . $city . "','" . $index . "','" . $department . "','" . $_POST['instrument'] . "','" . $_POST['brand'] . "','" . $_POST['modelname'] . "','" . $nc12 . "','" . $serialnumber . "','" . $date . "','" . $fiscalCheck . "','" . $shopname . "','" . $newFileNamePath . "','" . $cost . "','" . $newFileNamePath2 . "')");
                     if ($insert) {
                         $response['status'] = 'success';
                         $response['message'] = 'Дані у базу даних додано успішно';
@@ -309,8 +331,8 @@ if (isset($_POST)) {
             $headers .= 'From: webmaster@example.com' . "\r\n";
             $headers .= 'Reply-To: webmaster@example.com' . "\r\n";
             $headers .= 'X-Mailer: PHP/' . phpversion();
-            //$to = $address;
-            $to = 'soloveyalexey3@gmail.com';
+            
+            $to = $address;
             $subject = 'Заявка на реэстрацію приладу';
             include "mail.php";
 
