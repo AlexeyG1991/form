@@ -160,7 +160,7 @@
                         </div>
                     </div>
                     <p>Дата придбання <span>*</span></p>
-                    <div class="error-text">У акції беруть участь лише фіскальні чеки від 6-ого вересня 2021 року *</div>
+                    <div class="error-text">У акції беруть участь лише фіскальні чеки від 6-ого вересня 2021 року. Також з моменту покупки має пройти не менше ніж 14 днів *</div>
                     <div class="select-data">
                         <input type="date" name="purchasedate" id="purchasedate">
                     </div>
@@ -228,6 +228,7 @@
                         <button id="mainsubmitbutton" class="button-send button-send_big" tabindex="23"
                             type="submit">Зареєструвати</button>
                     </div>
+                    <p id="validationError">Перевірте правильність заповнення полей.</p>
                 </form>
                 <div class="section-register_form-img">
                     <img src="img/form-img.png" alt="img">
@@ -249,6 +250,25 @@
                         <div class="banner-actions-container">
                             <a href="index.html" class="banner-actions-container_cookies">Перейти на
                                 головну</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ot-sdk-bg" id="errorPopup" style="display: none;">
+            <div class="vertical-align-content">
+                <div class="ot-sdk-row">
+                    <div class="ot-sdk-twelve ot-sdk-columns">
+                        <div class="banner-header">
+                            <h3 class="onetrust-policy-title">Сталася помилка</h3>
+                            <button class="onetrust-close-btn-container" id="errorClose"><img src="img/close.png"
+                                    alt="close"></button>
+                        </div>
+                        <p class="onetrust-policy-text" id="errorPoputText"></p>
+                    </div>
+                    <div class="ot-sdk-twelve ot-sdk-columns">
+                        <div class="banner-actions-container">
+                            <!-- <a id="errorCloseAnchor" class="banner-actions-container_cookies">Ок</a> -->
                         </div>
                     </div>
                 </div>
