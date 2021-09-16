@@ -1,6 +1,8 @@
 ﻿<?php
 require_once 'config/db.php';
 $uploadDir = 'uploads/';
+$mail_to = 'info@amdigital.agency';
+// $mail_to = 'soloveyalexey3@gmail.com';
 $response = array(
     'status' => 'error',
     'message' => 'Form submission failed, please try again.'
@@ -112,8 +114,7 @@ if (isset($_POST)) {
             $headers .= "Content-Type: multipart/mixed; boundary=\"$boundary\"\n";
 
 
-            // $to = $address;
-            $to = 'soloveyalexey3@gmail.com';
+            $to = $mail_to;
             $subject = 'Заявка на реэстрацію приладу';
 
 
@@ -171,7 +172,14 @@ if (isset($_POST)) {
 
             if (!empty($_FILES['photodownload'])) {
 
-                if (!empty($_FILES["photodownload"]["name"])) {                   
+                if (!empty($_FILES["photodownload"]["name"])) {  
+                    
+                    if($_FILES["photodownload"]["size"] > 10 * 1024 * 1024) {
+                        $response['status'] = 'error';
+                        $response['message'] = 'Перевірте файл чеку, розмір вашого файлу повинен буты менше 10 MB';
+                        echo json_encode($response);
+                        die();
+                    }
                     // File path config
                     $fileName = basename($_FILES["photodownload"]["name"]);
                     $fileNameNoExtension = preg_replace("/\.[^.]+$/", "", $fileName);
@@ -180,7 +188,7 @@ if (isset($_POST)) {
 
                     $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
                     
-                    $newFileNamePath = $uploadDir . $fileNameNoExtension . md5(uniqid(time())) . '.' . $fileType;
+                    $newFileNamePath = $uploadDir . $fileNameNoExtension . "_" . md5(uniqid(time())) . '.' . $fileType;
 
                     // Allow certain file formats
                     $allowTypes = array('pdf', 'doc', 'docx', 'jpg', 'png', 'jpeg');
@@ -207,7 +215,13 @@ if (isset($_POST)) {
                     }
                 }
                 if (!empty($_FILES['photodownload2'])) {
-                    if (!empty($_FILES["photodownload2"]["name"])) {                   
+                    if (!empty($_FILES["photodownload2"]["name"])) {
+                        if($_FILES["photodownload2"]["size"] > 10 * 1024 * 1024) {
+                            $response['status'] = 'error';
+                            $response['message'] = 'Перевірте файл облікової картки, розмір вашого файлу повинен буты менше 10 MB';
+                            echo json_encode($response);
+                            die();
+                        }             
                         // File path config
                         $fileName2 = basename($_FILES["photodownload2"]["name"]);
                         $fileNameNoExtension = preg_replace("/\.[^.]+$/", "", $fileName2);
@@ -216,7 +230,7 @@ if (isset($_POST)) {
 
                         $fileType2 = pathinfo($targetFilePath, PATHINFO_EXTENSION);
                         
-                        $newFileNamePath2 = $uploadDir . $fileNameNoExtension . md5(uniqid(time())) . '.' . $fileType2;
+                        $newFileNamePath2 = $uploadDir . $fileNameNoExtension . "_" . md5(uniqid(time())) . '.' . $fileType2;
 
                         // Allow certain file formats
                         $allowTypes = array('pdf', 'doc', 'docx', 'jpg', 'png', 'jpeg');
@@ -317,8 +331,8 @@ if (isset($_POST)) {
             $headers .= 'From: webmaster@example.com' . "\r\n";
             $headers .= 'Reply-To: webmaster@example.com' . "\r\n";
             $headers .= 'X-Mailer: PHP/' . phpversion();
-            //$to = $address;
-            $to = 'soloveyalexey3@gmail.com';
+            
+            $to = $address;
             $subject = 'Заявка на реэстрацію приладу';
             include "mail.php";
 

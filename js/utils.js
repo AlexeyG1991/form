@@ -27,7 +27,6 @@ const validateDate = (input) => {
 	const diff = getDifferenceInDays(inputDate, new Date());
 
 	if (start > inputDate || inputDate > Date.now() || diff < 14) return input;
-	// if (start > inputDate) return input;
 
 	return false;
 };

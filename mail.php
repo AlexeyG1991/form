@@ -31,39 +31,6 @@ $message = '<head>
                         <table class="es-content" cellspacing="0" cellpadding="0" align="center">
                             <tbody>
                                 <tr>
-                                    <td class="esd-stripe" esd-custom-block-id="4757" align="center">
-                                        <table class="es-content-body" style="background-color: transparent;" width="600" cellspacing="0" cellpadding="0" bgcolor="#ffffff" align="center">
-                                            <tbody>
-                                                <tr>
-                                                    <td class="esd-structure" align="left">
-                                                        <table width="100%" cellspacing="0" cellpadding="0">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td class="esd-container-frame" width="600" valign="top" align="center">
-                                                                        <table width="100%" cellspacing="0" cellpadding="0">
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <td class="esd-block-banner" style="position: relative;" align="center" esdev-config="h9"><a target="_blank" href="https://viewstripo.email">
-                                                                                        <img class="adapt-img esdev-stretch-width esdev-banner-rendered" src="https://tlr.stripocdn.email/content/guids/bannerImgGuid/images/31071577652000291.png" alt="Emy blog" title="Emy blog" width="100%" style="display: block;"></a>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table class="es-content" cellspacing="0" cellpadding="0" align="center">
-                            <tbody>
-                                <tr>
                                     <td class="esd-stripe" align="center">
                                         <table class="es-content-body" width="600" cellspacing="0" cellpadding="0" bgcolor="#ffffff" align="center">
                                             <tbody>
@@ -77,7 +44,7 @@ $message = '<head>
                                                                             <tbody>
                                                                                 <tr>
                                                                                     <td class="esd-block-text" align="center">
-                                                                                        <h1 style="line-height: 150%;">Дякуємо за підписку!</h1>
+                                                                                        <h1 style="line-height: 150%;">Дякуємо за реестрацію!</h1>
                                                                                     </td>
                                                                                 </tr>
                                                                                 <tr>
@@ -93,7 +60,9 @@ $message = '<head>
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <td class="esd-block-text" align="center">
-                                                                                        <p style="color: #333333;">Ваша адреса підтверджена і товар зареестрованний.</p>
+                                                                                        <p style="color: #333333;">Шановний учасник акції, дякуємо за реєстрацію!
+                                                                                        При підтвердженні достовірності внесених даних, подарунок буде відправлено автоматично.</p>
+                                                                                        <p style="color: #333333;">При виникненні додаткових запитань, наш менеджер з вами зв’яжеться.</p>
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>
