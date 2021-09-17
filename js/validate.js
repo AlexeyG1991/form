@@ -133,6 +133,7 @@ submit.addEventListener("click", (e) => {
 	});
 	if (validate(mainForm)) {
 		document.getElementById("validationError").style.display = "none";
+		document.getElementById("requestLoader").style.display = "block";
 		const formData = new FormData(mainForm);
 		formData.append("nc12", mainForm.nc12.value);
 		formData.append("agreement", mainForm["radio-3"].checked);
@@ -145,6 +146,8 @@ submit.addEventListener("click", (e) => {
 			contentType: false,
 			data: formData,
 			success: function (data) {
+				document.getElementById("requestLoader").style.display = "none";
+
 				const result = JSON.parse(data);
 				if (result.status === "success") {
 					document.getElementById("successPopup").style.display = "block";
@@ -154,6 +157,8 @@ submit.addEventListener("click", (e) => {
 				}
 			},
 			error: function (data) {
+				document.getElementById("requestLoader").style.display = "none";
+
 				document.getElementById("errorPopup").style.display = "block";
 				document.getElementById("errorPoputText").innerText =
 					data.message ||
@@ -161,6 +166,7 @@ submit.addEventListener("click", (e) => {
 			},
 		});
 	} else {
+		document.getElementById("requestLoader").style.display = "none";
 		document.getElementById("validationError").style.display = "block";
 	}
 });
