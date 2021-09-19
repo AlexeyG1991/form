@@ -158,3 +158,4 @@ areas = [
 	"Чернігівська область",
 	"м. Київ",
 ];
+const typePage = "whirpool";

@@ -400,3 +400,4 @@ filterSilpo = (classname) => {
 			.forEach((e) => (e.style.display = "block"));
 	}
 };
+const typePage = "silpo";
