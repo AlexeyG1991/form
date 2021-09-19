@@ -147,14 +147,14 @@ submit.addEventListener("click", (e) => {
 			contentType: false,
 			data: formData,
 			success: function (data) {
-				let result = "";
-				data.isJSON()
-					? (result = JSON.parse(data))
-					: (result = {
-							status: "error",
-							message: "Помилка серевера, спробуйте ще.",
-					  });
-
+				// let result = "";
+				// data.isJSON()
+				// 	? (result = JSON.parse(data))
+				// 	: (result = {
+				// 			status: "error",
+				// 			message: "Помилка серевера, спробуйте ще.",
+				// 	  });
+				const result = JSON.parse(data);
 				document.getElementById("requestLoader").style.display = "none";
 				if (result.status === "success") {
 					document.getElementById("successPopup").style.display = "block";
