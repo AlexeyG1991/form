@@ -98,14 +98,24 @@ if (isset($_POST)) {
             }else{
                 $cost = "";
             }
+            if ($_POST['isSendNews'] === "true") {
+                $isSendNews = 1;
+                $isSendMail = 'Так';
+            }else{
+                $isSendNews = 0;
+                $isSendMail = 'Нi';
+            }
+            if (!empty($_POST['typePage'])) {
+                $typePage = $_POST['typePage'];
+            }
 
 
 //Content
 
             $bound="filename-".rand(1000,99999);
             $headers = "Content-Type: multipart/mixed; boundary=\"$bound\"\n";
-            $headers .= 'From: webmaster@example.com';
-            $headers .= 'Reply-To: webmaster@example.com';
+            $headers .= 'From:' . $mail_to;
+            $headers .= 'Reply-To: ' . $mail_to;
             $headers .= 'X-Mailer: PHP/' . phpversion();
 
 
@@ -136,7 +146,13 @@ if (isset($_POST)) {
                    <td>Електронна пошта</td><td>" . $address . "</td>
                 </tr>
                 <tr>
-                   <td>Адресса</td><td>" . $location . "</td>
+                   <td>Адреса</td><td>" . $location . "</td>
+                </tr>
+                <tr>
+                   <td>Почтова адреса</td><td>" . $department . "</td>
+                </tr>
+                <tr>
+                   <td>Тип сторiнки</td><td>" . $typePage . "</td>
                 </tr>
                  <tr>
                    <td>Інформація про прилад</td><td>" . $instrument . "</td>
@@ -163,7 +179,7 @@ if (isset($_POST)) {
                    <td>Назва магазину</td><td>" . $shopname . "</td>
                 </tr>
                 <tr>
-                   <td>Згода отрымуваты повідомлення</td><td>" . " " . "</td>
+                   <td>Згода отрымуваты повідомлення</td><td>" . "$isSendMail" . "</td>
                 </tr>
               </table>
             </body>
@@ -304,7 +320,7 @@ if (isset($_POST)) {
                     $body .= "\r\n--$boundary\r\n";
 
                     // Insert form data in the database
-                    $insert = $db->query("INSERT INTO sendform (firstname,lastname,userphone,useremail,area,city,indexcity,department,instrument,brand,modelname,nc12,serialnumber,purchasedate,fiscalCheck,shopname,photodownload, cost, photo2download) VALUES ('" . $name . "','" . $lastname . "','" . $phone . "','" . $address . "','" . $area . "','" . $city . "','" . $index . "','" . $department . "','" . $_POST['instrument'] . "','" . $_POST['brand'] . "','" . $_POST['modelname'] . "','" . $nc12 . "','" . $serialnumber . "','" . $date . "','" . $fiscalCheck . "','" . $shopname . "','" . $newFileNamePath . "','" . $cost . "','" . $newFileNamePath2 . "')");
+                    $insert = $db->query("INSERT INTO sendform (firstname,lastname,userphone,useremail,area,city,indexcity,department,form_type,instrument,brand,modelname,nc12,serialnumber,purchasedate,fiscalCheck,shopname,photodownload,cost,photo2download,is_send_news) VALUES ('" . $name . "','" . $lastname . "','" . $phone . "','" . $address . "','" . $area . "','" . $city . "','" . $index . "','" . $department . "','" . $typePage . "','" . $_POST['instrument'] . "','" . $_POST['brand'] . "','" . $_POST['modelname'] . "','" . $nc12 . "','" . $serialnumber . "','" . $date . "','" . $fiscalCheck . "','" . $shopname . "','" . $newFileNamePath . "','" . $cost . "','" . $newFileNamePath2 . "','" . $isSendNews . "')");
                     if ($insert) {
                         $response['status'] = 'success';
                         $response['message'] = 'Дані у базу даних додано успішно';
@@ -327,13 +343,13 @@ if (isset($_POST)) {
 
 // user message
             $headers = 'MIME-Version: 1.0' . "\r\n";
-            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-            $headers .= 'From: webmaster@example.com' . "\r\n";
-            $headers .= 'Reply-To: webmaster@example.com' . "\r\n";
+            $headers .= 'Content-type: text/html; charset=\'utf-8\'' . "\r\n";
+            $headers .= 'From:' . $mail_to  . "\r\n";
+            $headers .= 'Reply-To: ' . $mail_to  . "\r\n";
             $headers .= 'X-Mailer: PHP/' . phpversion();
             
             $to = $address;
-            $subject = 'Заявка на реэстрацію приладу';
+            $subject = 'Заявка на реєстрацію приладу';
             include "mail.php";
 
             if (mail($to, $subject, $message, $headers)) {
