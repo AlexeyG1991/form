@@ -73,6 +73,6 @@ if (mainForm.cost) {
 }
 if (mainForm.photodownload2) {
 	mainForm.photodownload2.addEventListener("input", () => {
-		validateAndClose(mainForm.photodownload2, 1, 100, validateRequired);
+		validateAndClose(mainForm.photodownload2, 1, 128, validateRequired);
 	});
 }
