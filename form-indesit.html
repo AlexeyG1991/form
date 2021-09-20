@@ -28,32 +28,32 @@
                     <div>
                         <p>Ім'я українською мовою згідно паспорту <span>*</span></p>
                         <div class="error-text">Незаповнене поле *</div>
-                        <input placeholder="Введіть ім'я" tabindex="1" name="firstname" type="text">
+                        <input placeholder="Введіть ім'я" tabindex="1" name="firstname" type="text" maxlength="30">
                     </div>
                     <div>
                         <p>Прізвище українською мовою згідно паспорту <span>*</span></p>
                         <div class="error-text">Незаповнене поле *</div>
-                        <input placeholder="Введіть прізвище" tabindex="2" name="lastname" type="text">
+                        <input placeholder="Введіть прізвище" tabindex="2" name="lastname" type="text"  maxlength="30">
                     </div>
                     <div>
                         <p>Моб. телефон <span>*</span></p>
                         <div class="error-text">Телефон має складатися з 10 цифр. Приклад 0998765473*</div>
-                        <input placeholder="0ххххххххх" tabindex="3" name="userphone" type="tel">
+                        <input placeholder="0ххххххххх" tabindex="3" name="userphone" type="tel"  maxlength="10">
                     </div>
                     <div>
                         <p>Підтвердження моб. телефону <span>*</span></p>
                         <div class="error-text">Номера не співпадають *</div>
-                        <input placeholder="0ххххххххх" tabindex="4" name="userphonerepeat" type="tel">
+                        <input placeholder="0ххххххххх" tabindex="4" name="userphonerepeat" type="tel" maxlength="10">
                     </div>
                     <div>
                         <p>Електронна пошта <span>*</span></p>
                         <div class="error-text">Будь ласка введіть валідну пошту. Приклад example@gmail.com *</div>
-                        <input placeholder="Введіть адресу" tabindex="5" name="useremail" type="text">
+                        <input placeholder="Введіть адресу" tabindex="5" name="useremail" type="text"  maxlength="30">
                     </div>
                     <div>
                         <p>Підтвердження електронної пошти <span>*</span></p>
                         <div class="error-text">Пошти не співпадають *</div>
-                        <input placeholder="Введіть адресу" tabindex="6" name="emailrepeat" type="text">
+                        <input placeholder="Введіть адресу" tabindex="6" name="emailrepeat" type="text"  maxlength="30">
                     </div>
                     <h2>Адреса</h2>
                     <p>Область <span>*</span></p>
@@ -64,19 +64,19 @@
                     <div>
                         <p>Місто/населений пункт <span>*</span></p>
                         <div class="error-text">Незаповнене поле *</div>
-                        <input placeholder="Введіть назву" tabindex="8" name="city" type="text">
+                        <input placeholder="Введіть назву" tabindex="8" name="city" type="text"  maxlength="30">
                     </div>
                     <div>
                         <p>Індекс <span>*</span></p>
                         <div class="error-text">Незаповнене поле *</div>
-                        <input tabindex="9" name="index" type="text">
+                        <input tabindex="9" name="index" type="text"  maxlength="30">
                     </div>
                     <div>
                         <p>Адреса відділення Укрпошти <span>*</span></p>
                         <p class="text-info">(на яке робимо відправку подарункового сертифікату)</p>
 
                         <div class="error-text">Незаповнене поле *</div>
-                        <input placeholder="Введіть адресу відділення" tabindex="10" name="department" type="text">
+                        <input placeholder="Введіть адресу відділення" tabindex="10" name="department" type="text"  maxlength="30">
                     </div>
                     <h2>Конфіденційність</h2>
                     <p class="p-radio">Я повністю приймаю повідомлення про порядок поводження з особистою інформацією, а
@@ -143,9 +143,9 @@
                     </div>
                     <div>
                         <p>Серійний номер <span>*</span></p>
-                        <div class="error-text">Серійний номер має складається з 12 цифр. Прилад 379633322115 *</div>
+                        <div class="error-text">Незаповнене поле *</div>
                         <div class="input-info">
-                            <input placeholder="" tabindex="15" name="serialnumber" type="text">
+                            <input placeholder="" tabindex="15" name="serialnumber" type="text"  maxlength="30">
                             <span class="span-hover">i</span>
                             <span class="input-info_text">Серійний номер є унікальним
                                 ідентифікатором вашого
@@ -162,7 +162,7 @@
                     <div>
                         <p>Номер фіксального чеку <span>*</span></p>
                         <div class="error-text">Незаповнене поле *</div>
-                        <input placeholder="" tabindex="19" name="fiscalCheck" type="text">
+                        <input placeholder="" tabindex="19" name="fiscalCheck" type="text"  maxlength="30">
                     </div>
                     <p>Назва магазину <span>*</span></p>
                     <div class="error-text">Незаповнене поле *</div>

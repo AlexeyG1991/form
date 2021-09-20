@@ -94,9 +94,9 @@ const validate = (form) => {
 	if (validateDate(form.purchasedate)) invalid.push(form.purchasedate);
 	if (validateRequired(form.fiscalCheck, 1, 40)) invalid.push(form.fiscalCheck);
 	if (validateRequired(form.shopname)) invalid.push(form.shopname);
-	if (validateRequired(form.serialnumber, 12, 12))
+	if (validateRequired(form.serialnumber, 1, 40))
 		invalid.push(form.serialnumber);
-	if (validateRequired(form.photodownload, 1, 256))
+	if (validateRequired(form.photodownload, 1, 128))
 		invalid.push(form.photodownload);
 
 	if (mainForm.cost) {
@@ -136,7 +136,8 @@ submit.addEventListener("click", (e) => {
 		document.getElementById("requestLoader").style.display = "block";
 		const formData = new FormData(mainForm);
 		formData.append("nc12", mainForm.nc12.value);
-		formData.append("agreement", mainForm["radio-3"].checked);
+		formData.append("isSendNews", mainForm["radio-3"].checked);
+		formData.append("typePage", typePage);
 
 		$.ajax({
 			url: "/send-mail.php",
@@ -146,9 +147,15 @@ submit.addEventListener("click", (e) => {
 			contentType: false,
 			data: formData,
 			success: function (data) {
-				document.getElementById("requestLoader").style.display = "none";
-
+				// let result = "";
+				// data.isJSON()
+				// 	? (result = JSON.parse(data))
+				// 	: (result = {
+				// 			status: "error",
+				// 			message: "Помилка серевера, спробуйте ще.",
+				// 	  });
 				const result = JSON.parse(data);
+				document.getElementById("requestLoader").style.display = "none";
 				if (result.status === "success") {
 					document.getElementById("successPopup").style.display = "block";
 				} else {

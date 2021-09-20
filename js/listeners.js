@@ -52,7 +52,7 @@ mainForm.nc12.addEventListener("input", () => {
 	validateAndClose(mainForm.nc12, 1, 40, validateRequired);
 });
 mainForm.serialnumber.addEventListener("input", () => {
-	validateAndClose(mainForm.serialnumber, 12, 12, validateRequired);
+	validateAndClose(mainForm.serialnumber, 1, 40, validateRequired);
 });
 mainForm.purchasedate.addEventListener("input", () => {
 	validateAndClose(mainForm.purchasedate, 1, 40, validateDate);
@@ -73,6 +73,6 @@ if (mainForm.cost) {
 }
 if (mainForm.photodownload2) {
 	mainForm.photodownload2.addEventListener("input", () => {
-		validateAndClose(mainForm.photodownload2, 1, 100, validateRequired);
+		validateAndClose(mainForm.photodownload2, 1, 128, validateRequired);
 	});
 }
