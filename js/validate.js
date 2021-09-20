@@ -94,7 +94,7 @@ const validate = (form) => {
 	if (validateDate(form.purchasedate)) invalid.push(form.purchasedate);
 	if (validateRequired(form.fiscalCheck, 1, 40)) invalid.push(form.fiscalCheck);
 	if (validateRequired(form.shopname)) invalid.push(form.shopname);
-	if (validateRequired(form.serialnumber, 12, 12))
+	if (validateRequired(form.serialnumber, 1, 256))
 		invalid.push(form.serialnumber);
 	if (validateRequired(form.photodownload, 1, 256))
 		invalid.push(form.photodownload);
