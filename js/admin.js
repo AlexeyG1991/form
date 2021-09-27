@@ -88,6 +88,7 @@ function objectsToArray(objs) {
 		e.fiscalNumber,
 		e.shopName,
 		"<a href='https://madewithvuejs.com/enso-datatable' target='blank'>https://madewithvuejs.com/enso-datatable</a>",
+		e.photo2 || "",
 		// "<a href='" + e.photo + "'" + "target='blank'>" + e.photo + "</a>",
 		// e.photo,
 	]);
@@ -108,6 +109,7 @@ function renderTable(data) {
 			{ title: "Номер Фіскального Чеку" },
 			{ title: "Назва Магазину" },
 			{ title: "Фото" },
+			{ title: "Фото2" },
 		],
 	});
 }
